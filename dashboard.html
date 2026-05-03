@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 NOVA Execution Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Dashboard Execution Styles */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .dashboard-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dashboard-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .system-status {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .status-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .status-indicator {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.online {
+            background: #4CAF50;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+
+        .status-indicator.offline {
+            background: #f44336;
+            box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .sync-info {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sync-header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sync-source {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .sync-web {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+        }
+
+        .sync-telegram {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .sync-automated {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            color: white;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .location-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .location-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .location-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .location-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        .status-completed {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .status-processing {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+        }
+
+        .status-pending {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            color: white;
+        }
+
+        .location-logs {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            animation: slideIn 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            border-left: 3px solid #667eea;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .log-timestamp {
+            color: #666;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .log-process { color: #2196F3; }
+        .log-success { color: #4CAF50; }
+        .log-error { color: #f44336; }
+        .log-info { color: #FF9800; }
+        .log-warning { color: #FFC107; }
+
+        .location-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .sync-controls {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            color: white;
+        }
+
+        /* Scrollbar styling */
+        .location-logs::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .location-logs::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .location-logs::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 3px;
+        }
+
+        .location-logs::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.7);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .sync-progress {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">
+                🤖 NOVA EXECUTION DASHBOARD
+            </h1>
+        </div>
+
+        <!-- System Status -->
+        <div class="system-status">
+            <div class="status-item">
+                <div class="status-indicator online" id="botStatus"></div>
+                <span>Bot Activo: <strong id="botStatusText">Online</strong></span>
+            </div>
+            <div class="status-item">
+                <div class="status-indicator online" id="supabaseStatus"></div>
+                <span>Supabase: <strong id="supabaseStatusText">Conectado</strong></span>
+            </div>
+            <div class="status-item">
+                <div class="status-indicator online" id="processStatus"></div>
+                <span>Procesos: <strong id="processStatusText">Inactivo</strong></span>
+            </div>
+            <div class="status-item">
+                <span>🕐 Última: <strong id="lastUpdate">--:--:--</strong></span>
+            </div>
+        </div>
+
+        <!-- Sync Progress -->
+        <div class="sync-progress" id="syncProgress" style="display: none;">
+            <div class="sync-header">
+                🔄 Progreso de Sincronización
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%">0%</div>
+            </div>
+            <div id="syncStatusMessage">Esperando sincronización...</div>
+        </div>
+
+        <!-- Sync Info -->
+        <div class="sync-info">
+            <div class="sync-header">
+                � Última Sincronización
+            </div>
+            <div id="syncInfo">
+                <div class="empty-state">No hay sincronizaciones recientes</div>
+            </div>
+        </div>
+
+        <!-- Sync Controls -->
+        <div class="sync-controls">
+            <button class="control-btn btn-primary" onclick="startWebSync()">
+                🌐 Sincronizar desde Web
+            </button>
+            <button class="control-btn btn-secondary" onclick="startTelegramSync()">
+                📱 Sincronizar desde Telegram
+            </button>
+            <button class="control-btn btn-danger" onclick="clearAllLogs()">
+                🗑️ Limpiar Logs
+            </button>
+        </div>
+
+        <!-- Locations Status -->
+        <div class="locations-grid" id="locationsGrid">
+            <div class="location-card">
+                <div class="location-header">
+                    <div class="location-name">🏖️ Miami</div>
+                    <div class="location-status status-pending">Pendiente</div>
+                </div>
+                <div class="location-metrics">
+                    <div class="metric-item">📊 Reservas: <span class="metric-value" id="miami-reservations">--</span></div>
+                    <div class="metric-item">💾 Estado: <span class="metric-value" id="miami-saved">No guardado</span></div>
+                    <div class="metric-item">� Vehículos: <span class="metric-value" id="miami-vehicles">--</span></div>
+                    <div class="metric-item">💰 Ingresos: <span class="metric-value" id="miami-revenue">$--</span></div>
+                </div>
+                <div class="location-logs" id="miami-logs">
+                    <div class="empty-state">Esperando logs de Miami...</div>
+                </div>
+            </div>
+            <div class="location-card">
+                <div class="location-header">
+                    <div class="location-name">🌲 NC</div>
+                    <div class="location-status status-pending">Pendiente</div>
+                </div>
+                <div class="location-metrics">
+                    <div class="metric-item">📊 Reservas: <span class="metric-value" id="nc-reservations">--</span></div>
+                    <div class="metric-item">💾 Estado: <span class="metric-value" id="nc-saved">No guardado</span></div>
+                    <div class="metric-item">� Vehículos: <span class="metric-value" id="nc-vehicles">--</span></div>
+                    <div class="metric-item">💰 Ingresos: <span class="metric-value" id="nc-revenue">$--</span></div>
+                </div>
+                <div class="location-logs" id="nc-logs">
+                    <div class="empty-state">Esperando logs de NC...</div>
+                </div>
+            </div>
+            <div class="location-card">
+                <div class="location-header">
+                    <div class="location-name">🎵 Nashville</div>
+                    <div class="location-status status-pending">Pendiente</div>
+                </div>
+                <div class="location-metrics">
+                    <div class="metric-item">📊 Reservas: <span class="metric-value" id="nashville-reservations">--</span></div>
+                    <div class="metric-item">💾 Estado: <span class="metric-value" id="nashville-saved">No guardado</span></div>
+                    <div class="metric-item">� Vehículos: <span class="metric-value" id="nashville-vehicles">--</span></div>
+                    <div class="metric-item">💰 Ingresos: <span class="metric-value" id="nashville-revenue">$--</span></div>
+                </div>
+                <div class="location-logs" id="nashville-logs">
+                    <div class="empty-state">Esperando logs de Nashville...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,1588 @@
+2026-05-01 11:56:48,916 [CRITICAL] __main__ — BOT_TOKEN no definido en .env — abortando.
+2026-05-01 11:57:28,344 [INFO] __main__ — Supabase conectado correctamente.
+2026-05-01 11:57:28,915 [INFO] apscheduler.scheduler — Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-01 11:57:28,918 [INFO] apscheduler.scheduler — Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-01 11:57:28,918 [INFO] __main__ — 🤖 Bot corriendo — reportes cada 30 min de 8:00 a 21:00 | Supabase: ✓ conectado
+2026-05-01 11:57:29,502 [INFO] apscheduler.scheduler — Added job "auto_report" to job store "default"
+2026-05-01 11:57:29,504 [INFO] apscheduler.scheduler — Added job "midnight_cleanup" to job store "default"
+2026-05-01 11:57:29,521 [INFO] apscheduler.scheduler — Scheduler started
+2026-05-01 11:57:29,522 [INFO] telegram.ext.Application — Application started
+2026-05-01 11:57:38,934 [INFO] apscheduler.executors.default — Running job "auto_report (trigger: interval[0:30:00], next run at: 2026-05-01 16:27:38 UTC)" (scheduled at 2026-05-01 15:57:38.913746+00:00)
+2026-05-01 11:57:38,935 [INFO] __main__ — Ejecutando reporte automático programado...
+2026-05-01 11:57:38,936 [INFO] __main__ — Iniciando envío de reporte completo — 05/01/2026
+2026-05-01 11:57:50,463 [INFO] __main__ — Reporte Miami | total=35 onrent=7 open=24 noshow=0 unqualified=3 cancel=1 turo=0 returns=15 days=27.0 avg=$33.26 avail=17 next_day=24 ret_next=23
+2026-05-01 11:57:51,263 [INFO] __main__ — Supabase ← Miami | 2026-05-01 guardado correctamente
+2026-05-01 11:57:55,809 [INFO] __main__ — Reporte NC | total=35 onrent=8 open=25 noshow=0 unqualified=1 cancel=1 turo=0 returns=13 days=25.0 avg=$39.88 avail=29 next_day=9 ret_next=17
+2026-05-01 11:57:56,382 [INFO] __main__ — Supabase ← NC | 2026-05-01 guardado correctamente
+2026-05-01 11:57:56,392 [INFO] __main__ — Reporte manual solicitado por user_id=1308051526 (RTP)
+2026-05-01 11:57:56,393 [INFO] __main__ — Iniciando envío de reporte completo — 05/01/2026
+2026-05-01 11:58:00,377 [INFO] __main__ — Reporte Nashville | total=16 onrent=2 open=11 noshow=0 unqualified=1 cancel=2 turo=0 returns=13 days=8.0 avg=$63.35 avail=13 next_day=14 ret_next=19
+2026-05-01 11:58:00,943 [INFO] __main__ — Supabase ← Nashville | 2026-05-01 guardado correctamente
+2026-05-01 11:58:01,223 [INFO] __main__ — Ciclo completo — 4 mensajes visibles guardados para próxima limpieza
+2026-05-01 11:58:01,230 [INFO] apscheduler.executors.default — Job "auto_report (trigger: interval[0:30:00], next run at: 2026-05-01 16:27:38 UTC)" executed successfully
+2026-05-01 11:58:01,273 [INFO] __main__ — Borrando 4 mensajes del reporte anterior...
+2026-05-01 11:58:10,596 [INFO] __main__ — Reporte Miami | total=35 onrent=7 open=24 noshow=0 unqualified=3 cancel=1 turo=0 returns=15 days=27.0 avg=$33.26 avail=17 next_day=24 ret_next=23
+2026-05-01 11:58:11,344 [INFO] __main__ — Supabase ← Miami | 2026-05-01 guardado correctamente
+2026-05-01 11:58:15,578 [INFO] __main__ — Reporte NC | total=35 onrent=8 open=25 noshow=0 unqualified=1 cancel=1 turo=0 returns=13 days=25.0 avg=$39.88 avail=29 next_day=9 ret_next=17
+2026-05-01 11:58:16,128 [INFO] __main__ — Supabase ← NC | 2026-05-01 guardado correctamente
+2026-05-01 11:58:19,656 [INFO] __main__ — Reporte Nashville | total=16 onrent=2 open=11 noshow=0 unqualified=1 cancel=2 turo=0 returns=13 days=8.0 avg=$63.35 avail=13 next_day=14 ret_next=19
+2026-05-01 11:58:20,203 [INFO] __main__ — Supabase ← Nashville | 2026-05-01 guardado correctamente
+2026-05-01 11:58:20,489 [INFO] __main__ — Ciclo completo — 4 mensajes visibles guardados para próxima limpieza
+2026-05-01 11:59:59,996 [INFO] __main__ — Supabase conectado correctamente.
+2026-05-01 12:00:00,500 [INFO] apscheduler.scheduler — Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-01 12:00:00,503 [INFO] apscheduler.scheduler — Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-01 12:00:00,503 [INFO] __main__ — 🤖 Bot corriendo — reportes cada 30 min de 8:00 a 21:00 | Supabase: ✓ conectado
+2026-05-01 12:00:01,082 [INFO] apscheduler.scheduler — Added job "auto_report" to job store "default"
+2026-05-01 12:00:01,082 [INFO] apscheduler.scheduler — Added job "midnight_cleanup" to job store "default"
+2026-05-01 12:00:01,083 [INFO] apscheduler.scheduler — Scheduler started
+2026-05-01 12:00:01,083 [INFO] telegram.ext.Application — Application started
+2026-05-01 12:00:01,461 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:05,598 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:06,734 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:10,508 [INFO] apscheduler.executors.default — Running job "auto_report (trigger: interval[0:30:00], next run at: 2026-05-01 16:30:10 UTC)" (scheduled at 2026-05-01 16:00:10.500959+00:00)
+2026-05-01 12:00:10,508 [INFO] __main__ — Ejecutando reporte automático programado...
+2026-05-01 12:00:10,508 [INFO] __main__ — Iniciando envío de reporte completo — 05/01/2026
+2026-05-01 12:00:11,369 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:20,209 [INFO] __main__ — Reporte Miami | total=35 onrent=7 open=24 noshow=0 unqualified=3 cancel=1 turo=0 returns=15 days=27.0 avg=$33.26 avail=17 next_day=24 ret_next=23
+2026-05-01 12:00:20,793 [INFO] __main__ — Supabase ← Miami | 2026-05-01 guardado correctamente
+2026-05-01 12:00:21,255 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:25,085 [INFO] __main__ — Reporte NC | total=35 onrent=8 open=25 noshow=0 unqualified=1 cancel=1 turo=0 returns=13 days=25.0 avg=$39.88 avail=29 next_day=9 ret_next=17
+2026-05-01 12:00:25,582 [INFO] __main__ — Supabase ← NC | 2026-05-01 guardado correctamente
+2026-05-01 12:00:25,588 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:29,047 [INFO] __main__ — Reporte Nashville | total=16 onrent=2 open=11 noshow=0 unqualified=1 cancel=2 turo=0 returns=13 days=8.0 avg=$63.35 avail=13 next_day=14 ret_next=19
+2026-05-01 12:00:30,243 [INFO] __main__ — Supabase ← Nashville | 2026-05-01 guardado correctamente
+2026-05-01 12:00:30,390 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:30,533 [INFO] __main__ — Ciclo completo — 4 mensajes visibles guardados para próxima limpieza
+2026-05-01 12:00:30,538 [INFO] apscheduler.executors.default — Job "auto_report (trigger: interval[0:30:00], next run at: 2026-05-01 16:30:10 UTC)" executed successfully
+2026-05-01 12:00:35,040 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:38,567 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:43,947 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:49,419 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:00:52,927 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:01:00,932 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:01:06,413 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:01:10,555 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:01:18,554 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:01:22,706 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:01:25,495 [INFO] __main__ — Reporte manual solicitado por user_id=1308051526 (RTP)
+2026-05-01 12:01:25,495 [INFO] __main__ — Iniciando envío de reporte completo — 05/01/2026
+2026-05-01 12:01:26,053 [INFO] __main__ — Borrando 5 mensajes del reporte anterior...
+2026-05-01 12:01:34,781 [INFO] __main__ — Reporte Miami | total=35 onrent=7 open=24 noshow=0 unqualified=3 cancel=1 turo=0 returns=15 days=27.0 avg=$33.26 avail=17 next_day=24 ret_next=23
+2026-05-01 12:01:35,337 [INFO] __main__ — Supabase ← Miami | 2026-05-01 guardado correctamente
+2026-05-01 12:01:35,345 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:01:40,731 [INFO] __main__ — Reporte NC | total=35 onrent=8 open=25 noshow=0 unqualified=1 cancel=1 turo=0 returns=13 days=25.0 avg=$39.88 avail=29 next_day=9 ret_next=17
+2026-05-01 12:01:41,245 [INFO] __main__ — Supabase ← NC | 2026-05-01 guardado correctamente
+2026-05-01 12:01:41,656 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:01:45,041 [INFO] __main__ — Reporte Nashville | total=16 onrent=3 open=10 noshow=0 unqualified=1 cancel=2 turo=0 returns=13 days=10.0 avg=$61.25 avail=12 next_day=14 ret_next=19
+2026-05-01 12:01:45,605 [INFO] __main__ — Supabase ← Nashville | 2026-05-01 guardado correctamente
+2026-05-01 12:01:45,891 [INFO] __main__ — Ciclo completo — 4 mensajes visibles guardados para próxima limpieza
+2026-05-01 12:01:59,150 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:02:03,284 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:02:29,300 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:02:33,452 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:03:03,866 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:03:08,014 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:03:38,463 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:03:42,616 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:03:52,145 [ERROR] asyncio — Task was destroyed but it is pending!
+task: <Task pending name='Application:7713765183:update_fetcher' coro=<Application._update_fetcher() running at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_application.py:1221> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-01 12:03:52,147 [ERROR] asyncio — Task was destroyed but it is pending!
+task: <Task pending name='Updater:start_polling:polling_task' coro=<network_retry_loop() running at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py:152> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup()]>
+2026-05-01 12:03:59,042 [INFO] __main__ — Supabase conectado correctamente.
+2026-05-01 12:03:59,616 [INFO] apscheduler.scheduler — Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-01 12:03:59,620 [INFO] apscheduler.scheduler — Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-05-01 12:03:59,621 [INFO] __main__ — 🤖 Bot corriendo — reportes cada 30 min de 8:00 a 21:00 | Supabase: ✓ conectado
+2026-05-01 12:04:00,236 [INFO] apscheduler.scheduler — Added job "auto_report" to job store "default"
+2026-05-01 12:04:00,236 [INFO] apscheduler.scheduler — Added job "midnight_cleanup" to job store "default"
+2026-05-01 12:04:00,237 [INFO] apscheduler.scheduler — Scheduler started
+2026-05-01 12:04:00,238 [INFO] telegram.ext.Application — Application started
+2026-05-01 12:04:00,663 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:04:04,810 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:04:05,968 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:04:09,621 [INFO] apscheduler.executors.default — Running job "auto_report (trigger: interval[0:30:00], next run at: 2026-05-01 16:34:09 UTC)" (scheduled at 2026-05-01 16:04:09.616808+00:00)
+2026-05-01 12:04:09,621 [INFO] __main__ — Ejecutando reporte automático programado...
+2026-05-01 12:04:09,624 [INFO] __main__ — Iniciando envío de reporte completo — 05/01/2026
+2026-05-01 12:04:10,620 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:04:19,894 [INFO] __main__ — Reporte Miami | total=35 onrent=7 open=24 noshow=0 unqualified=3 cancel=1 turo=0 returns=15 days=27.0 avg=$33.26 avail=17 next_day=24 ret_next=23
+2026-05-01 12:04:21,256 [INFO] __main__ — Supabase ← Miami | 2026-05-01 guardado correctamente
+2026-05-01 12:04:21,712 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:04:28,287 [INFO] __main__ — Reporte NC | total=35 onrent=8 open=25 noshow=0 unqualified=1 cancel=1 turo=0 returns=13 days=25.0 avg=$39.88 avail=29 next_day=9 ret_next=17
+2026-05-01 12:04:29,452 [INFO] __main__ — Supabase ← NC | 2026-05-01 guardado correctamente
+2026-05-01 12:04:29,470 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:04:35,296 [INFO] __main__ — Reporte Nashville | total=16 onrent=3 open=10 noshow=0 unqualified=1 cancel=2 turo=0 returns=13 days=10.0 avg=$61.25 avail=12 next_day=14 ret_next=19
+2026-05-01 12:04:36,354 [INFO] __main__ — Supabase ← Nashville | 2026-05-01 guardado correctamente
+2026-05-01 12:04:36,893 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:04:36,893 [INFO] __main__ — Ciclo completo — 4 mensajes visibles guardados para próxima limpieza
+2026-05-01 12:04:36,900 [INFO] apscheduler.executors.default — Job "auto_report (trigger: interval[0:30:00], next run at: 2026-05-01 16:34:09 UTC)" executed successfully
+2026-05-01 12:04:41,034 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:04:44,564 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:04:49,211 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:04:54,706 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:05:00,102 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:05:08,175 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:05:12,343 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:05:24,222 [INFO] telegram.ext.Application — Application is stopping. This might take a moment.
+2026-05-01 12:05:24,223 [INFO] apscheduler.scheduler — Scheduler has been shut down
+2026-05-01 12:05:24,223 [INFO] telegram.ext.Application — Application.stop() complete
+2026-05-01 12:05:54,846 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:06:00,226 [ERROR] telegram.ext.Application — No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 115, in network_retry_loop
+    if not await do_action():
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_utils\networkloop.py", line 108, in do_action
+    return action_cb_task.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_updater.py", line 335, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 669, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 4601, in get_updates
+    await self._post(
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 697, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\_bot.py", line 726, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 197, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\request\_baserequest.py", line 355, in _request_wrapper
+    raise Conflict(message)
+telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-05-01 12:08:25,264 [WARNING] __main__ — Usuario no autorizado intentó usar el bot: 6244354350
+2026-05-01 12:17:00,475 [WARNING] __main__ — No se pudo borrar mensaje 28: Message can't be deleted for everyone
+2026-05-01 13:06:35,106 [ERROR] __main__ — Supabase error 400 (Miami): {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'fecha_desde' column of 'reportes_hq_s' in the schema cache"}
+2026-05-01 13:06:40,064 [ERROR] __main__ — Supabase error 400 (NC): {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'fecha_desde' column of 'reportes_hq_s' in the schema cache"}
+2026-05-01 13:06:44,695 [ERROR] __main__ — Supabase error 400 (Nashville): {"code":"PGRST204","details":null,"hint":null,"message":"Could not find the 'fecha_desde' column of 'reportes_hq_s' in the schema cache"}
+2026-05-01 13:37:02,717 [ERROR] __main__ — Error borrando datos viejos de reportes_hq: 400 - {"code":"21000","details":null,"hint":null,"message":"DELETE requires a WHERE clause"}
+2026-05-01 14:10:09,295 [ERROR] asyncio — Task was destroyed but it is pending!
+task: <Task pending name='Application:7713765183:update_fetcher' coro=<Application._update_fetcher() running at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_application.py:1221> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-01 15:18:18,077 [WARNING] apscheduler.executors.default — Run time of job "auto_report (trigger: interval[0:30:00], next run at: 2026-05-01 19:40:33 UTC)" was missed by 0:07:44.672197
+2026-05-01 16:26:12,892 [ERROR] __main__ — Error enviando reporte rango brand_id=1: 'list' object has no attribute 'get'
+2026-05-01 16:26:14,711 [ERROR] __main__ — Error enviando reporte rango brand_id=2: 'list' object has no attribute 'get'
+2026-05-01 16:26:16,426 [ERROR] __main__ — Error enviando reporte rango brand_id=3: 'list' object has no attribute 'get'
+2026-05-01 16:30:23,875 [ERROR] __main__ — Error enviando reporte rango brand_id=1: 'list' object has no attribute 'get'
+2026-05-01 16:30:25,871 [ERROR] __main__ — Error enviando reporte rango brand_id=2: 'list' object has no attribute 'get'
+2026-05-01 16:30:27,615 [ERROR] __main__ — Error enviando reporte rango brand_id=3: 'list' object has no attribute 'get'
+2026-05-01 16:36:13,790 [ERROR] __main__ — Error enviando reporte rango brand_id=1: 'list' object has no attribute 'get'
+2026-05-01 16:36:15,589 [ERROR] __main__ — Error enviando reporte rango brand_id=2: 'list' object has no attribute 'get'
+2026-05-01 16:36:17,200 [ERROR] __main__ — Error enviando reporte rango brand_id=3: 'list' object has no attribute 'get'
+2026-05-01 17:31:04,106 [ERROR] __main__ — Error enviando reporte rango brand_id=1: name 'params' is not defined
+2026-05-01 17:31:06,956 [ERROR] __main__ — Error enviando reporte rango brand_id=2: name 'params' is not defined
+2026-05-01 17:31:09,302 [ERROR] __main__ — Error enviando reporte rango brand_id=3: name 'params' is not defined
+2026-05-01 18:48:31,305 [ERROR] asyncio — Task was destroyed but it is pending!
+task: <Task pending name='Application:7713765183:update_fetcher' coro=<Application._update_fetcher() running at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_application.py:1221> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-03 13:05:37,683 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:05:40 UTC)" was missed by 0:00:07.189320
+2026-05-03 13:05:44,885 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:05:50 UTC)" was missed by 0:00:04.390258
+2026-05-03 13:05:51,585 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:06:00 UTC)" was missed by 0:00:01.091291
+2026-05-03 13:14:07,737 [ERROR] __main__ — Error procesando payload Realtime: 'NoneType' object has no attribute 'startswith'
+2026-05-03 13:14:24,221 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:14:30 UTC)" was missed by 0:00:03.725784
+2026-05-03 13:14:32,844 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:14:40 UTC)" was missed by 0:00:02.350321
+2026-05-03 13:14:38,285 [ERROR] __main__ — Error procesando payload Realtime: 'NoneType' object has no attribute 'startswith'
+2026-05-03 13:15:13,112 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:15:20 UTC)" was missed by 0:00:02.617690
+2026-05-03 13:15:33,557 [ERROR] __main__ — Error procesando payload Realtime: 'NoneType' object has no attribute 'startswith'
+2026-05-03 13:15:33,558 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:15:40 UTC)" was missed by 0:00:03.064207
+2026-05-03 13:15:42,916 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:15:50 UTC)" was missed by 0:00:02.422218
+2026-05-03 13:16:14,560 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:16:20 UTC)" was missed by 0:00:04.066255
+2026-05-03 13:16:24,137 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:16:30 UTC)" was missed by 0:00:03.643077
+2026-05-03 13:16:39,016 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:16:40 UTC)" was missed by 0:00:08.522283
+2026-05-03 13:21:23,853 [ERROR] __main__ — Error procesando payload Realtime: 'NoneType' object has no attribute 'startswith'
+2026-05-03 13:21:38,063 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:21:40 UTC)" was missed by 0:00:07.569512
+2026-05-03 13:21:46,673 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:21:50 UTC)" was missed by 0:00:06.179544
+2026-05-03 13:21:55,019 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:22:00 UTC)" was missed by 0:00:04.525520
+2026-05-03 13:23:15,032 [ERROR] __main__ — Error procesando payload Realtime: 'NoneType' object has no attribute 'startswith'
+2026-05-03 13:23:37,365 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:23:40 UTC)" was missed by 0:00:06.871092
+2026-05-03 13:23:45,241 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:23:50 UTC)" was missed by 0:00:04.745874
+2026-05-03 13:23:52,358 [ERROR] __main__ — Error procesando payload Realtime: 'NoneType' object has no attribute 'startswith'
+2026-05-03 13:23:52,360 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:24:00 UTC)" was missed by 0:00:01.865964
+2026-05-03 13:24:17,938 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:24:20 UTC)" was missed by 0:00:07.444563
+2026-05-03 13:24:23,951 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:24:30 UTC)" was missed by 0:00:03.457014
+2026-05-03 13:24:53,830 [ERROR] __main__ — Error procesando payload Realtime: 'NoneType' object has no attribute 'startswith'
+2026-05-03 13:25:08,238 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:25:10 UTC)" was missed by 0:00:07.744213
+2026-05-03 13:25:12,358 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:25:20 UTC)" was missed by 0:00:01.863835
+2026-05-03 13:26:33,597 [ERROR] __main__ — Error procesando payload Realtime: 'NoneType' object has no attribute 'startswith'
+2026-05-03 13:26:51,959 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:27:00 UTC)" was missed by 0:00:01.465081
+2026-05-03 13:39:23,419 [ERROR] realtime._async.client — WebSocket connection closed with code: 1006, reason: 
+2026-05-03 13:42:33,167 [ERROR] realtime._async.client — Connection attempt failed: timed out during opening handshake
+2026-05-03 13:42:33,220 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:42:40 UTC)" was missed by 0:00:02.726301
+2026-05-03 13:44:33,488 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:44:40 UTC)" was missed by 0:00:02.994296
+2026-05-03 13:44:43,193 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:44:50 UTC)" was missed by 0:00:02.699051
+2026-05-03 13:48:57,570 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:49:00 UTC)" was missed by 0:00:07.076567
+2026-05-03 13:49:15,750 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:49:20 UTC)" was missed by 0:00:05.256514
+2026-05-03 13:49:43,790 [ERROR] __main__ — Error de conexión con https://api-america-miami.us4.hqrentals.app/api-america-miami/car-rental/reservations
+2026-05-03 13:53:48,521 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:53:50 UTC)" was missed by 0:00:08.027507
+2026-05-03 13:53:58,603 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:54:00 UTC)" was missed by 0:00:08.109185
+2026-05-03 13:54:09,529 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:54:10 UTC)" was missed by 0:00:09.034880
+2026-05-03 13:56:43,879 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:56:50 UTC)" was missed by 0:00:03.385623
+2026-05-03 13:56:57,772 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:57:00 UTC)" was missed by 0:00:07.278245
+2026-05-03 13:57:14,472 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:57:20 UTC)" was missed by 0:00:03.978381
+2026-05-03 13:59:09,801 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:59:10 UTC)" was missed by 0:00:09.307250
+2026-05-03 13:59:19,447 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:59:20 UTC)" was missed by 0:00:08.952570
+2026-05-03 13:59:28,918 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 17:59:30 UTC)" was missed by 0:00:08.424282
+2026-05-03 14:01:26,780 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:10], next run at: 2026-05-03 18:01:30 UTC)" was missed by 0:00:06.286622
+2026-05-03 14:02:42,435 [ERROR] __main__ — Error procesando comando realtime: name 'send_range_report_with_progress' is not defined
+2026-05-03 14:06:02,275 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:06:19 UTC)" was missed by 0:00:12.897687
+2026-05-03 14:10:42,702 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:11:04 UTC)" was missed by 0:00:08.145221
+2026-05-03 14:11:51,739 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:12:04 UTC)" was missed by 0:00:17.182544
+2026-05-03 14:11:59,414 [ERROR] asyncio — Task exception was never retrieved
+future: <Task finished name='Task-41' coro=<process_realtime_command() done, defined at C:\Camila_HQ\hq_telegram_bot_v4.py:1525> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_application.py", line 1050, in __run
+    loop.run_forever()
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1922, in _run_once
+    handle._run()
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Camila_HQ\hq_telegram_bot_v4.py", line 1563, in process_realtime_command
+    app,
+  File "C:\Camila_HQ\hq_telegram_bot_v4.py", line 1092, in send_range_report_with_progress
+    report = generate_range_report(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Camila_HQ\hq_telegram_bot_v4.py", line 639, in generate_range_report
+    data_reserva2 = fetch_returns_range(fecha_desde, fecha_hasta, brand_id)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Camila_HQ\hq_telegram_bot_v4.py", line 484, in fetch_returns_range
+    data = _safe_get(url, params)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Camila_HQ\hq_telegram_bot_v4.py", line 506, in _safe_get
+    r = requests.get(url, headers=HEADERS, params=params, timeout=20)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\util\ssl_.py", line 461, in ssl_wrap_socket
+    context.load_verify_locations(ca_certs, ca_cert_dir, ca_cert_data)
+KeyboardInterrupt
+2026-05-03 14:12:28,220 [WARNING] apscheduler.executors.default — Run time of job "auto_report (trigger: interval[1:00:00], next run at: 2026-05-03 19:12:22 UTC)" was missed by 0:00:05.811713
+2026-05-03 14:12:54,038 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:13:17 UTC)" was missed by 0:00:06.627002
+2026-05-03 14:13:18,920 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:13:47 UTC)" was missed by 0:00:01.508378
+2026-05-03 14:14:53,576 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:15:17 UTC)" was missed by 0:00:06.164591
+2026-05-03 14:17:36,496 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:18:05 UTC)" was missed by 0:00:01.361399
+2026-05-03 14:21:06,469 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:21:35 UTC)" was missed by 0:00:01.334428
+2026-05-03 14:29:58,995 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:30:25 UTC)" was missed by 0:00:03.348749
+2026-05-03 14:36:35,577 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:36:55 UTC)" was missed by 0:00:09.931578
+2026-05-03 14:36:58,041 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:37:25 UTC)" was missed by 0:00:02.395550
+2026-05-03 14:38:45,953 [ERROR] asyncio — Task was destroyed but it is pending!
+task: <Task pending name='Task-14' coro=<run_coroutine_job() running at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\apscheduler\executors\base.py:181> wait_for=<Future pending cb=[shield.<locals>._outer_done_callback() at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\asyncio\tasks.py:908, Task.task_wakeup()]> cb=[AsyncIOExecutor._do_submit_job.<locals>.callback() at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\apscheduler\executors\asyncio.py:32, gather.<locals>._done_callback() at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\asyncio\tasks.py:764]>
+2026-05-03 14:38:45,955 [ERROR] apscheduler.executors.default — Job "realtime_listener (trigger: date[2026-05-03 18:29:22 UTC], next run at: 2026-05-03 18:29:22 UTC)" raised an exception
+Traceback (most recent call last):
+  File "C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\apscheduler\executors\base.py", line 181, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+GeneratorExit
+2026-05-03 14:38:45,956 [ERROR] asyncio — Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<Job._run() running at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\telegram\ext\_jobqueue.py:997> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[shield.<locals>._inner_done_callback() at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\asyncio\tasks.py:891]>
+2026-05-03 14:38:45,958 [ERROR] asyncio — Task was destroyed but it is pending!
+task: <Task pending name='Task-18' coro=<AsyncRealtimeClient._heartbeat() running at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\realtime\_async\client.py:250> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-03 14:38:45,958 [ERROR] asyncio — Task was destroyed but it is pending!
+task: <Task pending name='Task-16' coro=<Connection.keepalive() running at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\websockets\asyncio\connection.py:815> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-03 14:38:45,958 [ERROR] asyncio — Task was destroyed but it is pending!
+task: <Task pending name='Task-17' coro=<AsyncRealtimeClient._listen() running at C:\Users\rodol\AppData\Local\Programs\Python\Python311\Lib\site-packages\realtime\_async\client.py:100> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-05-03 14:39:30,463 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:39:56 UTC)" was missed by 0:00:03.742171
+2026-05-03 14:40:03,940 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:40:26 UTC)" was missed by 0:00:07.219179
+2026-05-03 14:41:28,714 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:41:56 UTC)" was missed by 0:00:01.993681
+2026-05-03 14:43:56,381 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:44:24 UTC)" was missed by 0:00:02.317660
+2026-05-03 14:44:25,285 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:44:54 UTC)" was missed by 0:00:01.222191
+2026-05-03 14:50:08,638 [ERROR] __main__ — Error insertando en Supabase (Miami): HTTPSConnectionPool(host='xtvopaehirznzeyuanwc.supabase.co', port=443): Read timed out. (read timeout=15)
+2026-05-03 14:50:08,650 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:50:35 UTC)" was missed by 0:00:03.178876
+2026-05-03 14:56:41,819 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 18:56:57 UTC)" was missed by 0:00:14.651326
+2026-05-03 15:04:57,736 [ERROR] __main__ — Error enviando reporte brand_id=3: Timed out
+2026-05-03 15:06:02,138 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 19:06:26 UTC)" was missed by 0:00:05.472155
+2026-05-03 15:17:38,742 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 19:17:56 UTC)" was missed by 0:00:12.076170
+2026-05-03 15:17:38,788 [ERROR] realtime._async.client — WebSocket connection closed with code: 1006, reason: 

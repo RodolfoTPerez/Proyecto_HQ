@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 Rent-A-Car HQ - Reportes Analíticos</title>
+
+  <!-- Chart.js & Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container-large">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="header-large">
+    <div class="brand-large">
+      <h1>📊 Rent-A-Car HQ Analytics</h1>
+      <span class="subtitle-large">Reportes Analíticos Avanzados</span>
+    </div>
+    <nav class="nav-large">
+      <a href="index.html" class="nav-item-large">
+        <span class="nav-icon-large">📊</span>
+        <span class="nav-text-large">Dashboard</span>
+      </a>
+      <a href="reportes.html" class="nav-item-large active">
+        <span class="nav-icon-large">📈</span>
+        <span class="nav-text-large">Reportes</span>
+      </a>
+      <a href="comparativos.html" class="nav-item-large">
+        <span class="nav-icon-large">🔀</span>
+        <span class="nav-text-large">Comparativos</span>
+      </a>
+    </nav>
+    <div class="header-controls-large">
+      <div class="status-large">
+        <span class="status-dot"></span>
+        <span id="connectionStatus">Iniciando...</span>
+      </div>
+      <div class="theme-switcher-large">
+        <button class="theme-btn-large cyber" onclick="setTheme('cyber')" title="Cyberpunk">🟣</button>
+        <button class="theme-btn-large matrix" onclick="setTheme('matrix')" title="Matrix">🟢</button>
+        <button class="theme-btn-large sunset" onclick="setTheme('sunset')" title="Sunset">🟠</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Error Box -->
+  <div id="errorBox" class="error-box-large"></div>
+
+  <!-- ══════════ REPORTE 1: VELOCIDAD DE ABSORCIÓN ══════════ -->
+  <div class="section-large">
+    <h2 class="section-title-large">
+      <span class="icon-large">⚡</span> 1. Velocidad de Absorción de Flota
+    </h2>
+    <p class="section-desc-large">Cuántos carros pasan de open a rental por hora. Útil para proyectar a qué hora se agota la disponibilidad.</p>
+    <div class="glass chart-card-large">
+      <div class="chart-container-large">
+        <canvas id="absorptionChart"></canvas>
+      </div>
+    </div>
+    <div class="glass analytics-container-large">
+      <h3 class="analytics-title-large">📋 Detalle por Ubicación</h3>
+      <div id="absorptionDetails" class="analytics-grid-large">
+        <div class="loading-large">⏳ Cargando datos...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ REPORTE 2: EFICIENCIA DE UTILIZACIÓN ══════════ -->
+  <div class="section-large">
+    <h2 class="section-title-large">
+      <span class="icon-large">📈</span> 2. Eficiencia de Utilización por Ubicación
+    </h2>
+    <p class="section-desc-large">on_rent / (on_rent + vehicles_available) × 100. Identifica capacidad ociosa.</p>
+    <div class="glass chart-card-large">
+      <div class="chart-container-large">
+        <canvas id="utilizationChart"></canvas>
+      </div>
+    </div>
+    <div class="glass analytics-container-large">
+      <h3 class="analytics-title-large">📋 Detalle de Utilización</h3>
+      <div id="utilizationDetails" class="analytics-grid-large">
+        <div class="loading-large">⏳ Cargando datos...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ REPORTE 3: REVENUE ESTIMADO ══════════ -->
+  <div class="section-large">
+    <h2 class="section-title-large">
+      <span class="icon-large">💰</span> 3. Revenue Estimado del Día
+    </h2>
+    <p class="section-desc-large">total_rental_days × avg_rate_day. Estimación de ingresos diarios por ubicación.</p>
+    <div class="kpi-grid-large">
+      <div class="glass kpi-card-large">
+        <div class="icon-large">💵</div>
+        <div class="label-large">Revenue Total</div>
+        <div class="value-large" id="totalRevenue">$--</div>
+        <div class="desc-large">Suma de todas las ubicaciones</div>
+      </div>
+      <div class="glass kpi-card-large">
+        <div class="icon-large">🏆</div>
+        <div class="label-large">Ubicación Top</div>
+        <div class="value-large" id="topRevenueLocation">--</div>
+        <div class="desc-large">Mayor revenue del día</div>
+      </div>
+    </div>
+    <div class="glass chart-card-large">
+      <div class="chart-container-large">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+    <div class="glass analytics-container-large">
+      <h3 class="analytics-title-large">📋 Desglose por Ubicación</h3>
+      <div id="revenueDetails" class="analytics-grid-large">
+        <div class="loading-large">⏳ Cargando datos...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ REPORTE 4: COMPARACIÓN RESERVAS VS RETORNOS ══════════ -->
+  <div class="section-large">
+    <h2 class="section-title-large">
+      <span class="icon-large">🔄</span> 4. Comparación Reservas vs Retornos
+    </h2>
+    <p class="section-desc-large">returns vs on_rent. Indica si entró más de lo que salió de la flota.</p>
+    <div class="glass chart-card-large">
+      <div class="chart-container-large">
+        <canvas id="reservationsReturnsChart"></canvas>
+      </div>
+    </div>
+    <div class="glass analytics-container-large">
+      <h3 class="analytics-title-large">📋 Balance por Ubicación</h3>
+      <div id="balanceDetails" class="analytics-grid-large">
+        <div class="loading-large">⏳ Cargando datos...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ REPORTE 5: TASA DE PROBLEMAS ══════════ -->
+  <div class="section-large">
+    <h2 class="section-title-large">
+      <span class="icon-large">⚠️</span> 5. Tasa de Problemas
+    </h2>
+    <p class="section-desc-large">(no_show + cancellations + unqualified) / total_reservations × 100. Identifica issues operacionales.</p>
+    <div class="glass chart-card-large">
+      <div class="chart-container-large">
+        <canvas id="issuesRateChart"></canvas>
+      </div>
+    </div>
+    <div class="glass analytics-container-large">
+      <h3 class="analytics-title-large">📋 Desglose de Issues</h3>
+      <div id="issuesDetails" class="analytics-grid-large">
+        <div class="loading-large">⏳ Cargando datos...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ REPORTE 6: PROYECCIÓN DISPONIBILIDAD MAÑANA ══════════ -->
+  <div class="section-large">
+    <h2 class="section-title-large">
+      <span class="icon-large">🔮</span> 6. Proyección de Disponibilidad Mañana
+    </h2>
+    <p class="section-desc-large">vehicles_available + return_next_day - reservas_next_day. Proyección de stock para el día siguiente.</p>
+    <div class="glass chart-card-large">
+      <div class="chart-container-large">
+        <canvas id="projectionChart"></canvas>
+      </div>
+    </div>
+    <div class="glass analytics-container-large">
+      <h3 class="analytics-title-large">📋 Proyección por Ubicación</h3>
+      <div id="projectionDetails" class="analytics-grid-large">
+        <div class="loading-large">⏳ Cargando datos...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ REPORTE 7: TENDENCIA AVG_RATE_DAY ══════════ -->
+  <div class="section-large">
+    <h2 class="section-title-large">
+      <span class="icon-large">📊</span> 7. Tendencia de Avg Rate/Day
+    </h2>
+    <p class="section-desc-large">Evolución de la tarifa promedio durante el día. Útil para pricing dinámico.</p>
+    <div class="glass chart-card-large">
+      <div class="chart-container-large">
+        <canvas id="rateTrendChart"></canvas>
+      </div>
+    </div>
+    <div class="glass analytics-container-large">
+      <h3 class="analytics-title-large">📋 Resumen de Tarifas</h3>
+      <div id="rateDetails" class="analytics-grid-large">
+        <div class="loading-large">⏳ Cargando datos...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer-large">
+    <div class="refresh-large">
+      <span>🔄 Auto-refresh: 30s</span>
+      <span>•</span>
+      <span id="lastUpdate">Última actualización: --:--:--</span>
+    </div>
+    <div class="footer-info-large">
+      Reportes Analíticos Rent-A-Car HQ • Datos en tiempo real desde Supabase • Tabla: reportes_hq
+    </div>
+  </footer>
+
+</div>
+
+<!-- Lógica de la aplicación -->
+<script src="reportes.js"></script>
+</body>
+</html>

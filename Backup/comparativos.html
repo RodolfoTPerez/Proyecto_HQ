@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 Rent-A-Car HQ - Comparativos</title>
+
+  <!-- Chart.js & Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container-large">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="header-large">
+    <div class="brand-large">
+      <h1>📊 Rent-A-Car HQ</h1>
+    </div>
+    <nav class="nav-large">
+      <a href="index.html" class="nav-item-large">
+        <span class="nav-icon-large">📊</span>
+        <span class="nav-text-large">Dashboard</span>
+      </a>
+      <a href="comparativos.html" class="nav-item-large active">
+        <span class="nav-icon-large">�</span>
+        <span class="nav-text-large">Comparativos</span>
+      </a>
+      <a href="reportes_rango.html" class="nav-item-large">
+        <span class="nav-icon-large">�</span>
+        <span class="nav-text-large">Rango</span>
+      </a>
+    </nav>
+    <div class="header-controls-large">
+      <div class="status-large">
+        <span class="status-dot"></span>
+        <span id="connectionStatus">Iniciando...</span>
+      </div>
+      <div class="theme-switcher-large">
+        <button class="theme-btn-large cyber" onclick="setTheme('cyber')" title="Cyberpunk">🟣</button>
+        <button class="theme-btn-large matrix" onclick="setTheme('matrix')" title="Matrix">🟢</button>
+        <button class="theme-btn-large sunset" onclick="setTheme('sunset')" title="Sunset">🟠</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Error Box -->
+  <div id="errorBox" class="error-box-large"></div>
+
+  <!-- ══════════ GRID DE COMPARATIVOS ══════════ -->
+  <div class="comparativos-grid-large">
+
+    <!-- 1. On Rent por Ubicación -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">🚗 On Rent por Ubicación</div>
+      <div class="chart-container-large">
+        <canvas id="onRentChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 2. Utilización % por Ubicación -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">📈 Utilización % por Ubicación</div>
+      <div class="chart-container-large">
+        <canvas id="utilizationChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 3. Revenue por Ubicación -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">💰 Revenue por Ubicación</div>
+      <div class="chart-container-large">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 4. Issues Rate por Ubicación -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">⚠️ Issues Rate por Ubicación</div>
+      <div class="chart-container-large">
+        <canvas id="issuesChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 5. Avg Rate/Day por Ubicación -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">💵 Avg Rate/Day por Ubicación</div>
+      <div class="chart-container-large">
+        <canvas id="avgRateChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 6. Radar de Performance -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">🎯 Radar de Performance</div>
+      <div class="chart-container-large">
+        <canvas id="radarChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 7. Scatter: Utilización vs Revenue -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">📊 Utilización vs Revenue</div>
+      <div class="chart-container-large">
+        <canvas id="scatterChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 8. Returns vs On Rent -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">🔄 Returns vs On Rent</div>
+      <div class="chart-container-large">
+        <canvas id="returnsChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 9. Composición de Reservas -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">📋 Composición de Reservas</div>
+      <div class="chart-container-large">
+        <canvas id="compositionChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 10. Ranking Revenue -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">🏆 Ranking Revenue</div>
+      <div class="chart-container-large">
+        <canvas id="rankingRevenueChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 11. Ranking Utilización -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">📊 Ranking Utilización</div>
+      <div class="chart-container-large">
+        <canvas id="rankingUtilChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 12. Disponibilidad Actual vs Proyectada -->
+    <div class="glass comp-card-large">
+      <div class="comp-title-large">🔮 Disponibilidad: Hoy vs Mañana</div>
+      <div class="chart-container-large">
+        <canvas id="availabilityChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer-large">
+    <div class="refresh-large">
+      <span>🔄 Auto-refresh: 30s</span>
+      <span>•</span>
+      <span id="lastUpdate">Última actualización: --:--:--</span>
+    </div>
+    <div class="footer-info-large">
+      Comparativos Rent-A-Car HQ • Datos en tiempo real desde Supabase • Tabla: reportes_hq
+    </div>
+  </footer>
+
+</div>
+
+<!-- Lógica de la aplicación -->
+<script src="comparativos.js"></script>
+</body>
+</html>

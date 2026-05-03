@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="cyber">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 Rent-A-Car HQ - Reportes por Rango</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container-large">
+
+  <!-- ══ HEADER ══ -->
+  <header class="header-large">
+    <div class="brand-large">
+      <h1>📊 Rent-A-Car HQ</h1>
+    </div>
+    <nav class="nav-large">
+      <a href="index.html" class="nav-item-large">
+        <span class="nav-icon-large">📊</span>
+        <span class="nav-text-large">Dashboard</span>
+      </a>
+      <a href="comparativos.html" class="nav-item-large">
+        <span class="nav-icon-large">🔀</span>
+        <span class="nav-text-large">Comparativos</span>
+      </a>
+      <a href="reportes_rango.html" class="nav-item-large active">
+        <span class="nav-icon-large">📆</span>
+        <span class="nav-text-large">Rango</span>
+      </a>
+    </nav>
+    <div class="header-controls-large">
+      <div class="status-large">
+        <span class="status-dot"></span>
+        <span id="connectionStatus">Iniciando...</span>
+      </div>
+      <button id="forceSyncBtn" class="sync-btn-large" onclick="openCalendar()">
+        <span class="sync-icon">🔄</span> <span id="syncText">Sincronizar Rango</span>
+      </button>
+      <div class="theme-switcher-large">
+        <button class="theme-btn-large cyber" onclick="setTheme('cyber')" title="Cyberpunk">🟣</button>
+        <button class="theme-btn-large matrix" onclick="setTheme('matrix')" title="Matrix">🟢</button>
+        <button class="theme-btn-large sunset" onclick="setTheme('sunset')" title="Sunset">🟠</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sync Status Bar -->
+  <div id="syncStatusBar" class="sync-status-bar">
+    <div class="sync-status-content">
+      <span id="syncStatusMsg">Esperando al bot...</span>
+      <div class="progress-container">
+        <div id="syncProgressBar" class="progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PERIOD BADGE ══ -->
+  <div class="section-large">
+    <div class="glass period-badge">
+      <div class="period-icon">📅</div>
+      <div class="period-info">
+        <span class="period-label">Período Actual</span>
+        <span class="period-dates" id="badgePeriodRange">Cargando...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Box -->
+  <div id="errorBox" class="error-box-large"></div>
+
+  <!-- ══ CALENDAR MODAL ══ -->
+  <div id="calendarModal" class="calendar-modal">
+    <div class="calendar-content">
+      <div class="calendar-header">
+        <h3>📅 Seleccionar Rango de Fechas</h3>
+        <button class="close-btn" onclick="closeCalendar()">✖️</button>
+      </div>
+      
+      <div class="calendar-nav">
+        <button class="nav-btn" onclick="changeMonth(-1)">◀️</button>
+        <h4 id="calendarTitle">Mayo 2026</h4>
+        <button class="nav-btn" onclick="changeMonth(1)">▶️</button>
+      </div>
+      
+      <div class="calendar-weekdays">
+        <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
+      </div>
+      
+      <div id="calendarDays" class="calendar-days"></div>
+      
+      <div class="calendar-selection">
+        <div class="date-selection">
+          <div class="date-item">
+            <span class="date-label">Desde:</span>
+            <span id="modalDesdeDisplay" class="date-value">Seleccionar</span>
+          </div>
+          <div class="date-item">
+            <span class="date-label">Hasta:</span>
+            <span id="modalHastaDisplay" class="date-value">Seleccionar</span>
+          </div>
+        </div>
+        <button id="confirmBtn" class="confirm-btn" disabled onclick="confirmRange()">Confirmar Rango</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ KPIs GLOBALES ══ -->
+  <div class="section-large">
+    <h2 class="section-title-large"><span class="icon-large">�</span> Resumen Global de Flota</h2>
+    <div class="kpi-grid-large">
+      <div class="glass kpi-card-large">
+        <div class="icon-large">�</div>
+        <div class="label-large">On Rent</div>
+        <div class="value-large" id="kpiOnRent">--</div>
+        <div class="desc-large">Vehículos activos</div>
+      </div>
+      <div class="glass kpi-card-large">
+        <div class="icon-large">🅿️</div>
+        <div class="label-large">Disponibles</div>
+        <div class="value-large" id="kpiAvailable">--</div>
+        <div class="desc-large">Listos para rentar</div>
+      </div>
+      <div class="glass kpi-card-large">
+        <div class="icon-large">�</div>
+        <div class="label-large">Avg Rate/Day</div>
+        <div class="value-large" id="kpiAvgRate">$--</div>
+        <div class="desc-large">Precio promedio/día</div>
+      </div>
+      <div class="glass kpi-card-large">
+        <div class="icon-large">�</div>
+        <div class="label-large">Reservations</div>
+        <div class="value-large" id="kpiTotalRes">--</div>
+        <div class="desc-large">Total reservas</div>
+      </div>
+      <div class="glass kpi-card-large">
+        <div class="icon-large">⚠️</div>
+        <div class="label-large">Issues</div>
+        <div class="value-large" id="kpiIssues" style="color:var(--neon-warning)">--</div>
+        <div class="desc-large">No Show + Cancel.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ UBICACIONES ══ -->
+  <div class="section-large">
+    <h2 class="section-title-large"><span class="icon-large">📍</span> Estado por Ubicación (Reportes por Rango)</h2>
+    <div id="locationsContainer"></div>
+  </div>
+
+  <!-- ══ GRÁFICO ══ -->
+  <div class="section-large">
+    <h2 class="section-title-large"><span class="icon-large">📈</span> Evolución Temporal de Flota</h2>
+    <div class="glass chart-card-large">
+      <div class="chart-header-large">
+        <div class="chart-title-large">On Rent vs Disponibles</div>
+        <div class="chart-legend-large">
+          <div class="legend-item-large"><span class="legend-dot-large" style="background:var(--neon-primary)"></span>🚗 On Rent</div>
+          <div class="legend-item-large"><span class="legend-dot-large" style="background:var(--neon-secondary)"></span>🅿️ Available</div>
+        </div>
+      </div>
+      <div class="chart-container-large">
+        <canvas id="mainChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer-large">
+    <div class="refresh-large">
+      <span>🔄 Auto-refresh: 30s</span>
+      <span>•</span>
+      <span id="lastUpdate">Última actualización: --:--:--</span>
+    </div>
+    <div class="footer-info-large">
+      Dashboard Rent-A-Car HQ • Datos desde reportes_hq_s (Rango) • Reportes por Período
+    </div>
+  </footer>
+
+</div>
+
+<script src="app_rango.js"></script>
+</body>
+</html>
