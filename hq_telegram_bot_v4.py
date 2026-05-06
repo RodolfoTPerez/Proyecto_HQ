@@ -434,6 +434,7 @@ def fetch_reservations_range(fecha_desde: str, fecha_hasta: str, brand_id: int) 
                 {"type": "string", "column": "brand_id",    "operator": "equals",  "value": str(brand_id)},
                 {"type": "date",   "column": "pick_up_date","operator": "between", "value": [day_str, day_str]},
             ]),
+            "fields": "status,pick_up_date,total_days,total_paid,cancellation_reason_id,f600",
             "limit":100
         }
         data = _safe_get(url, params)
@@ -508,7 +509,7 @@ def _safe_get(url: str, params: dict = None) -> dict:
 def fetch_reservations(fecha: str, brand_id: int) -> pd.DataFrame:
     """
     Reservas cuyo pick_up_date es `fecha` para `brand_id`.
-    Sin filtro de fields para obtener total_days, total_paid y cancellation_reason_id.
+    Incluye campo f600 para contar registros Turo.
     """
     url = f"{HQ_API_BASE}/car-rental/reservations"
     params = {
@@ -516,6 +517,7 @@ def fetch_reservations(fecha: str, brand_id: int) -> pd.DataFrame:
             {"type": "string", "column": "brand_id",    "operator": "equals",  "value": str(brand_id)},
             {"type": "date",   "column": "pick_up_date","operator": "between", "value": [fecha, fecha]},
         ]),
+        "fields": "status,pick_up_date,total_days,total_paid,cancellation_reason_id,f600",
     }
     data = _safe_get(url, params)
     return pd.DataFrame(data.get("data", []))
@@ -647,10 +649,8 @@ def generate_range_report(
     onrent = len(data_reserva[data_reserva["status"] == "rental"])
     openr  = len(data_reserva[data_reserva["status"] == "open"])
     noshow = len(data_reserva[data_reserva["status"] == "no-show"])
-    turo   = len(data_reserva[data_reserva["status"] == "turo"])
-    
-    
-  
+    # TURO: contar registros donde f600="turo" (campo personalizado HQ)
+    turo   = len(data_reserva[data_reserva.get("f600", "") == "turo"])
 
     # Cancelaciones — solo si existe la columna
     if "cancellation_reason_id" in data_reserva.columns:
@@ -678,9 +678,6 @@ def generate_range_report(
     returns = len(data_reserva2[data_reserva2["status"].isin(["completed", "rental"])]) if not data_reserva2.empty else 0
     completed = len(data_reserva2[data_reserva2['status'] == 'completed'])
 
-
-    
-
     # Vehículos disponibles (usar datos actuales)
     if not vehicles.empty and "vc_brand_id" in vehicles.columns:
         vehicles_available = len(
@@ -691,10 +688,6 @@ def generate_range_report(
         )
     else:
         vehicles_available = 0
-
-    # Para reportes de rango, no calculamos proyecciones
-    reservas_next_day = 0
-    return_next_day = 0
 
     log.info(
         "Reporte RANGO %s | %s-%s total=%d onrent=%d open=%d noshow=%d unqualified=%d "
@@ -721,8 +714,8 @@ def generate_range_report(
         total_rental_days=float(total_rental_days),
         avg_rate_day=float(avg_rate),
         vehicles_available=vehicles_available,
-        reservas_next_day=reservas_next_day,
-        return_next_day=return_next_day,
+        reservas_next_day=0,
+        return_next_day=0,
         turo=turo,
     )
 
@@ -788,7 +781,8 @@ def generate_report(
     onrent = len(data_reserva[data_reserva["status"] == "rental"])
     openr  = len(data_reserva[data_reserva["status"] == "open"])
     noshow = len(data_reserva[data_reserva["status"] == "no-show"])
-    turo   = len(data_reserva[data_reserva["status"] == "turo"])  # ← NUEVO: status='turo'
+    # TURO: contar registros donde f600="turo" (campo personalizado HQ)
+    turo   = len(data_reserva[data_reserva.get("f600", "") == "turo"])
 
     # Cancelaciones — solo si existe la columna
     if "cancellation_reason_id" in data_reserva.columns:

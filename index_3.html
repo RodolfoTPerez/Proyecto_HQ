@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENT-A-CAR HQ — Fleet Command v3.1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-bg"></div>
+    
+    <!-- Enhanced Loading -->
+    <div class="loading-overlay" id="loader">
+        <div class="loader-ring gpu-accelerated"></div>
+        <div class="loader-text">Initializing Fleet Command v3.1...</div>
+    </div>
+    
+    <div class="app">
+        <!-- ═══ ENHANCED COMMAND BAR ═══ -->
+        <header class="cmd-bar will-change-transform">
+            <div class="brand">
+                <div class="brand-icon gpu-accelerated">🚗</div>
+                <div>
+                    <div class="brand-name">Rent-A-Car HQ</div>
+                    <div class="brand-sub">Fleet Command v3.1</div>
+                </div>
+            </div>
+            <div class="status-strip">
+                <div class="status-item">
+                    <div class="pulse-dot"></div>
+                    <span>System</span>
+                    <span>ONLINE</span>
+                </div>
+                <div class="status-item">
+                    <span>Vehicles</span>
+                    <span>307</span>
+                </div>
+                <div class="status-item">
+                    <span>Locations</span>
+                    <span>3 Active</span>
+                </div>
+                <div class="status-item">
+                    <span>Supabase</span>
+                    <span>Connected</span>
+                </div>
+            </div>
+            <div class="clock-block">
+                <div class="clock-time" id="clockTime">--:--:--</div>
+                <div class="clock-date" id="clockDate">--- -- ----</div>
+            </div>
+        </header>
+
+        <!-- ═══ ENHANCED GLOBAL KPIs ═══ -->
+        <div class="global-kpis">
+            <div class="kpi-mega optimized-animations" style="--fill:62%;--accent:var(--amber-bright);--accent-glow:var(--amber-glow);--accent-glow2:rgba(245,158,11,0.3)">
+                <div class="kpi-label">Total On Rent</div>
+                <div class="kpi-value" id="kpiOnRent">0</div>
+                <div class="kpi-sub">Vehículos activos en flota</div>
+            </div>
+            <div class="kpi-mega optimized-animations" style="--fill:75%;--accent:var(--green);--accent-glow:var(--green-dim);--accent-glow2:rgba(16,185,129,0.3)">
+                <div class="kpi-label">Total Open</div>
+                <div class="kpi-value" id="kpiOpen">0</div>
+                <div class="kpi-sub">Reservas abiertas</div>
+            </div>
+            <div class="kpi-mega optimized-animations" style="--fill:45%;--accent:var(--cyan);--accent-glow:var(--cyan-dim);--accent-glow2:rgba(6,182,212,0.3)">
+                <div class="kpi-label">Total Returns</div>
+                <div class="kpi-value" id="kpiReturns">0</div>
+                <div class="kpi-sub">Retornos del período</div>
+            </div>
+            <div class="kpi-mega optimized-animations" style="--fill:88%;--accent:#a78bfa;--accent-glow:rgba(124,58,237,0.12);--accent-glow2:rgba(124,58,237,0.3)">
+                <div class="kpi-label">Total Reservations</div>
+                <div class="kpi-value" id="kpiTotalRes">0</div>
+                <div class="kpi-sub">Suma todos los estados</div>
+            </div>
+            <div class="kpi-mega optimized-animations" style="--fill:35%;--accent:var(--red);--accent-glow:var(--red-dim);--accent-glow2:rgba(239,68,68,0.3)">
+                <div class="kpi-label">Issues Rate</div>
+                <div class="kpi-value" id="kpiIssues">0.0%</div>
+                <div class="kpi-sub">No-show + Cancelaciones</div>
+            </div>
+            <div class="kpi-mega optimized-animations" style="--fill:55%;--accent:var(--amber);--accent-glow:var(--amber-glow);--accent-glow2:rgba(245,158,11,0.25)">
+                <div class="kpi-label">Avg Rate/Day</div>
+                <div class="kpi-value" id="kpiAvgRate">$0</div>
+                <div class="kpi-sub">Tarifa promedio global</div>
+            </div>
+        </div>
+
+        <!-- ═══ ENHANCED SECTION LABEL ═══ -->
+        <div class="section-label">📍 Estado por Ubicación</div>
+
+        <!-- ═══ ENHANCED LOCATION CARDS ═══ -->
+        <div class="locations-row" id="locationsGrid">
+            <!-- Miami Enhanced Card -->
+            <div class="loc-card gpu-accelerated will-change-transform" id="card-miami">
+                <div class="loc-header">
+                    <div class="loc-name">🏖️ Miami</div>
+                    <div class="loc-badge badge-range">Brand ID: 1</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-cell">
+                        <div class="stat-lbl">On Rent</div>
+                        <div class="stat-val highlight-amber" id="miami-onrent">0</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-lbl">Open</div>
+                        <div class="stat-val highlight-green" id="miami-open">0</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-lbl">Returns</div>
+                        <div class="stat-val highlight-cyan" id="miami-returns">0</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-lbl">Available</div>
+                        <div class="stat-val" id="miami-avail">0</div>
+                    </div>
+                </div>
+                <div class="fin-strip">
+                    <div class="fin-cell">
+                        <div class="fin-lbl">Rental Days</div>
+                        <div class="fin-val" id="miami-days">0</div>
+                    </div>
+                    <div class="fin-cell">
+                        <div class="fin-lbl">Avg Rate</div>
+                        <div class="fin-val" id="miami-rate">$0</div>
+                    </div>
+                    <div class="fin-cell">
+                        <div class="fin-lbl">Revenue Est.</div>
+                        <div class="fin-val" id="miami-rev">$0</div>
+                    </div>
+                </div>
+                <div class="issues-row">
+                    <div class="issue-tag tag-noshow">NO SHOW <b id="miami-noshow">0</b></div>
+                    <div class="issue-tag tag-cancel">CANCEL <b id="miami-cancel">0</b></div>
+                    <div class="issue-tag tag-unqual">UNQUAL <b id="miami-unqual">0</b></div>
+                    <div class="issue-tag tag-returns">COMPLET <b id="miami-complet">0</b></div>
+                    <div class="issue-tag tag-turo">TURO <b id="miami-turo">0</b></div>
+                </div>
+            </div>
+
+            <!-- NC Enhanced Card -->
+            <div class="loc-card gpu-accelerated will-change-transform" id="card-nc">
+                <div class="loc-header">
+                    <div class="loc-name">🌲 North Carolina</div>
+                    <div class="loc-badge badge-range">Brand ID: 2</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-cell">
+                        <div class="stat-lbl">On Rent</div>
+                        <div class="stat-val highlight-amber" id="nc-onrent">0</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-lbl">Open</div>
+                        <div class="stat-val highlight-green" id="nc-open">0</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-lbl">Returns</div>
+                        <div class="stat-val highlight-cyan" id="nc-returns">0</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-lbl">Available</div>
+                        <div class="stat-val" id="nc-avail">0</div>
+                    </div>
+                </div>
+                <div class="fin-strip">
+                    <div class="fin-cell">
+                        <div class="fin-lbl">Rental Days</div>
+                        <div class="fin-val" id="nc-days">0</div>
+                    </div>
+                    <div class="fin-cell">
+                        <div class="fin-lbl">Avg Rate</div>
+                        <div class="fin-val" id="nc-rate">$0</div>
+                    </div>
+                    <div class="fin-cell">
+                        <div class="fin-lbl">Revenue Est.</div>
+                        <div class="fin-val" id="nc-rev">$0</div>
+                    </div>
+                </div>
+                <div class="issues-row">
+                    <div class="issue-tag tag-noshow">NO SHOW <b id="nc-noshow">0</b></div>
+                    <div class="issue-tag tag-cancel">CANCEL <b id="nc-cancel">0</b></div>
+                    <div class="issue-tag tag-unqual">UNQUAL <b id="nc-unqual">0</b></div>
+                    <div class="issue-tag tag-returns">COMPLET <b id="nc-complet">0</b></div>
+                    <div class="issue-tag tag-turo">TURO <b id="nc-turo">0</b></div>
+                </div>
+            </div>
+
+            <!-- Nashville Enhanced Card -->
+            <div class="loc-card gpu-accelerated will-change-transform" id="card-nashville">
+                <div class="loc-header">
+                    <div class="loc-name">🎵 Nashville</div>
+                    <div class="loc-badge badge-range">Brand ID: 3</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-cell">
+                        <div class="stat-lbl">On Rent</div>
+                        <div class="stat-val highlight-amber" id="nashville-onrent">0</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-lbl">Open</div>
+                        <div class="stat-val highlight-green" id="nashville-open">0</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-lbl">Returns</div>
+                        <div class="stat-val highlight-cyan" id="nashville-returns">0</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-lbl">Available</div>
+                        <div class="stat-val" id="nashville-avail">0</div>
+                    </div>
+                </div>
+                <div class="fin-strip">
+                    <div class="fin-cell">
+                        <div class="fin-lbl">Rental Days</div>
+                        <div class="fin-val" id="nashville-days">0</div>
+                    </div>
+                    <div class="fin-cell">
+                        <div class="fin-lbl">Avg Rate</div>
+                        <div class="fin-val" id="nashville-rate">$0</div>
+                    </div>
+                    <div class="fin-cell">
+                        <div class="fin-lbl">Revenue Est.</div>
+                        <div class="fin-val" id="nashville-rev">$0</div>
+                    </div>
+                </div>
+                <div class="issues-row">
+                    <div class="issue-tag tag-noshow">NO SHOW <b id="nashville-noshow">0</b></div>
+                    <div class="issue-tag tag-cancel">CANCEL <b id="nashville-cancel">0</b></div>
+                    <div class="issue-tag tag-unqual">UNQUAL <b id="nashville-unqual">0</b></div>
+                    <div class="issue-tag tag-returns">COMPLET <b id="nashville-complet">0</b></div>
+                    <div class="issue-tag tag-turo">TURO <b id="nashville-turo">0</b></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ══════════════════════════════════════════
+           ENHANCED DASHBOARD ENGINE v3.1
+        ═══════════════════════════════════════════ */
+        
+        // ── Performance optimizations ──
+        const raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
+        const now = () => performance.now();
+        
+        // ── Enhanced data seed ──
+        const ENHANCED_DATA = [
+            {
+                location: 'Miami', brand_id: 1,
+                fecha_desde: '2026-05-04', fecha_hasta: '2026-05-10',
+                hora_reporte: '2026-05-03T14:36:32.532486',
+                total_reservations: 106, on_rent: 38, open: 105,
+                no_show: 2, unqualified: 0, cancellations: 1,
+                returns: 77, return_completed: 65,
+                total_rental_days: 234.5, avg_rate_day: 45.67,
+                vehicles_available: 26, reservas_next_day: 12,
+                return_next_day: 8, turo: 0
+            },
+            {
+                location: 'North Carolina', brand_id: 2,
+                fecha_desde: '2026-05-04', fecha_hasta: '2026-05-10',
+                hora_reporte: '2026-05-03T14:36:56.959402',
+                total_reservations: 88, on_rent: 28, open: 85,
+                no_show: 1, unqualified: 2, cancellations: 3,
+                returns: 48, return_completed: 42,
+                total_rental_days: 156.8, avg_rate_day: 52.30,
+                vehicles_available: 34, reservas_next_day: 6,
+                return_next_day: 4, turo: 0
+            },
+            {
+                location: 'Nashville', brand_id: 3,
+                fecha_desde: '2026-05-04', fecha_hasta: '2026-05-10',
+                hora_reporte: '2026-05-03T14:37:17.903903',
+                total_reservations: 110, on_rent: 45, open: 107,
+                no_show: 3, unqualified: 1, cancellations: 3,
+                returns: 42, return_completed: 35,
+                total_rental_days: 189.2, avg_rate_day: 38.75,
+                vehicles_available: 20, reservas_next_day: 8,
+                return_next_day: 5, turo: 2
+            }
+        ];
+
+        // ── Location slug map ──
+        const LOC_SLUG = { 'Miami': 'miami', 'North Carolina': 'nc', 'Nashville': 'nashville' };
+        const FLEET_TOTAL = 307;
+
+        // ── Enhanced animations ──
+        function animateVal(el, to, prefix = '', suffix = '', decimals = 0) {
+            const from = parseFloat(el.dataset.current || 0);
+            el.dataset.current = to;
+            const duration = 600;
+            const start = now();
+            
+            function step() {
+                const p = Math.min((now() - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - p, 3);
+                const val = from + (to - from) * ease;
+                el.textContent = prefix + val.toFixed(decimals) + suffix;
+                
+                if (p < 1) {
+                    raf(step);
+                } else {
+                    el.classList.remove('counting');
+                }
+            }
+            
+            el.classList.add('counting');
+            raf(step);
+        }
+
+        // ── Optimized DOM queries ──
+        const cache = new Map();
+        function $(id) {
+            if (!cache.has(id)) {
+                cache.set(id, document.getElementById(id));
+            }
+            return cache.get(id);
+        }
+
+        // ── Enhanced location card update ──
+        function updateCard(d) {
+            const slug = LOC_SLUG[d.location] || d.location.toLowerCase().replace(/\s+/g, '');
+            
+            // Update stats with enhanced animation
+            const stats = [
+                [`${slug}-onrent`, d.on_rent || 0],
+                [`${slug}-open`, d.open || 0],
+                [`${slug}-returns`, d.returns || 0],
+                [`${slug}-avail`, d.vehicles_available || 0]
+            ];
+            
+            stats.forEach(([id, val]) => {
+                const el = $(id);
+                if (el) animateVal(el, val);
+            });
+
+            // Update financial data
+            const rev = (d.total_rental_days || 0) * (d.avg_rate_day || 0);
+            const updates = [
+                [`${slug}-days`, d.total_rental_days || 0],
+                [`${slug}-rate`, d.avg_rate_day || 0],
+                [`${slug}-rev`, rev]
+            ];
+            
+            updates.forEach(([id, val]) => {
+                const el = $(id);
+                if (el) {
+                    if (id.includes('rate') || id.includes('rev')) {
+                        el.textContent = '$' + Math.round(val).toLocaleString();
+                    } else {
+                        animateVal(el, val);
+                    }
+                }
+            });
+
+            // Update issues with enhanced styling
+            const issues = [
+                [`${slug}-noshow`, d.no_show || 0],
+                [`${slug}-cancel`, d.cancellations || 0],
+                [`${slug}-unqual`, d.unqualified || 0],
+                [`${slug}-complet`, d.return_completed || 0],
+                [`${slug}-turo`, d.turo || 0]
+            ];
+            
+            issues.forEach(([id, val]) => {
+                const el = $(id);
+                if (el) el.textContent = val || 0;
+            });
+        }
+
+        // ── Enhanced global KPIs update ──
+        function updateGlobals(data) {
+            const sum = (key) => data.reduce((a, d) => a + (d[key] || 0), 0);
+            
+            const totalOnRent = sum('on_rent');
+            const totalOpen = sum('open');
+            const totalReturns = sum('returns');
+            const totalRes = sum('total_reservations');
+            const totalIssues = sum('no_show') + sum('cancellations') + sum('unqualified');
+            const issuesRate = totalRes > 0 ? (totalIssues / totalRes) * 100 : 0;
+            
+            // Weighted avg rate calculation
+            const totalDays = sum('total_rental_days');
+            const totalPaid = data.reduce((a, d) => a + (d.total_rental_days || 0) * (d.avg_rate_day || 0), 0);
+            const avgRate = totalDays > 0 ? totalPaid / totalDays : 0;
+            
+            // Enhanced animations for KPIs
+            raf(() => {
+                animateVal($('kpiOnRent'), totalOnRent);
+                animateVal($('kpiOpen'), totalOpen);
+                animateVal($('kpiReturns'), totalReturns);
+                animateVal($('kpiTotalRes'), totalRes);
+                animateVal($('kpiIssues'), issuesRate, '', '%', 1);
+                $('kpiAvgRate').textContent = '$' + Math.round(avgRate).toLocaleString();
+            });
+        }
+
+        // ── Enhanced main render ──
+        function renderData(data) {
+            data.forEach(d => updateCard(d));
+            updateGlobals(data);
+        }
+
+        // ── Enhanced boot sequence ──
+        function boot() {
+            // Hide loader with enhanced animation
+            const loader = $('loader');
+            loader.style.opacity = '0';
+            loader.style.pointerEvents = 'none';
+            
+            // Render data after minimal delay
+            setTimeout(() => {
+                renderData(ENHANCED_DATA);
+                loader.remove();
+            }, 400);
+        }
+
+        // ── Initialize with enhanced timing ──
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', boot);
+        } else {
+            boot();
+        }
+    </script>
+</body>
+</html>

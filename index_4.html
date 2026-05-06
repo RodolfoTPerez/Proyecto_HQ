@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURORA OPS — Command & Control v4.2</title>
+    
+    <!-- Core External Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style_4.css">
+</head>
+<body>
+    <div class="tech-bg"></div>
+    <div class="aurora-glow"></div>
+
+    <div class="app">
+        <!-- ═══ COMMAND HEADER ═══ -->
+        <header class="header">
+            <div class="brand">
+                <div class="logo-hex"><span>⚡</span></div>
+                <div class="brand-info">
+                    <h1>AURORA OPS</h1>
+                    <p>Global Fleet Intelligence</p>
+                </div>
+            </div>
+
+            <nav class="nav">
+                <a href="index_4.html" class="nav-item active">Dashboard</a>
+                <a href="comparativos.html" class="nav-item">Analytics</a>
+                <a href="reportes_rango.html" class="nav-item">Reports</a>
+            </nav>
+
+            <div class="meta-stats">
+                <div class="status-indicator">
+                    <span class="dot-pulse"></span>
+                    <span id="connectionStatus" style="color: var(--neon-success);">LINK ESTABLISHED</span>
+                </div>
+                <button id="forceSyncBtn" class="btn-sync" onclick="forceSync()">
+                    <span>🔄</span> INITIATE GLOBAL SYNC
+                </button>
+                <div class="clock">
+                    <div class="clock-time" id="clockTime">00:00:00</div>
+                    <div class="clock-date" id="clockDate">-- --- ----</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══ SYNC MONITOR ═══ -->
+        <div id="syncStatusBar" class="progress-wrap">
+            <div id="syncProgressBar" class="progress-fill"></div>
+        </div>
+
+        <!-- ═══ GLOBAL KPIs ═══ -->
+        <div class="kpi-row">
+            <div class="kpi-card" style="--accent: var(--neon-primary);">
+                <div class="label">Total On Rent</div>
+                <div class="value" id="kpiOnRent">--</div>
+                <div class="sub" style="color: var(--neon-success);">Current Operations</div>
+            </div>
+            <div class="kpi-card" style="--accent: var(--neon-success);">
+                <div class="label">Total Available</div>
+                <div class="value" id="kpiAvailable">--</div>
+                <div class="sub">Station Capacity</div>
+            </div>
+            <div class="kpi-card" style="--accent: var(--neon-accent);">
+                <div class="label">Global Avg Rate</div>
+                <div class="value" id="kpiAvgRate">$ --</div>
+                <div class="sub" style="color: var(--neon-accent);">Market Velocity</div>
+            </div>
+            <div class="kpi-card" style="--accent: var(--neon-secondary);">
+                <div class="label">Total Reservations</div>
+                <div class="value" id="kpiTotalRes">--</div>
+                <div class="sub">System-wide Bookings</div>
+            </div>
+            <div class="kpi-card" style="--accent: var(--neon-danger);">
+                <div class="label">Global Issues</div>
+                <div class="value" id="kpiIssues" style="color: var(--neon-danger);">--</div>
+                <div class="sub">Interventions Needed</div>
+            </div>
+        </div>
+
+        <!-- ═══ MODULAR LOCATION MONITOR ═══ -->
+        <div class="panel">
+            <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 class="panel-title" style="margin-bottom: 0;">📍 TACTICAL STATION DEPLOYMENT</h2>
+                <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase;">Real-time Telemetry Feed</div>
+            </div>
+            
+            <div id="locationsContainer">
+                <div style="text-align:center; padding: 5rem; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 2px;">
+                    <div class="status-pulse" style="margin-bottom: 1rem;"></div>
+                    SYNCHRONIZING WITH ORBITAL NODES...
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ DYNAMICS & LOGS ═══ -->
+        <div class="content">
+            <div class="panel" style="flex: 1;">
+                <h2 class="panel-title">📉 FLEET UTILIZATION HISTOGRAM</h2>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="mainChart"></canvas>
+                </div>
+            </div>
+
+            <div class="panel" style="width: 400px;">
+                <h2 class="panel-title">🛰️ SYSTEM TRACE</h2>
+                <div class="log-terminal">
+                    <div class="log-title">Telemetry Stream</div>
+                    <div id="logContent" class="log-content" style="height: 220px;">
+                        <div class="log-line"><span>[SYS]</span> Aurora v4.2.0 core initialized.</div>
+                        <div class="log-line"><span>[NET]</span> Establishing secure tunnel...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ FOOTER ═══ -->
+        <footer style="margin-top: 3rem; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); border-top: 1px solid var(--glass-border); padding: 2rem 0;">
+            <div>COMMAND_ID: <span style="color: var(--neon-primary);">NOVA-42-ALFA</span> | STATUS: <span style="color: var(--neon-success);">NOMINAL</span></div>
+            <div id="lastUpdate">LAST SIGNAL: --:--:--</div>
+        </footer>
+    </div>
+
+    <!-- ═══ AURORA ENGINE v4.2 ═══ -->
+    <script>
+        const SUPABASE_URL = 'https://xtvopaehirznzeyuanwc.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_LCKuoYEaj6uJ4SOTUkHKwA_CYXZYOjf';
+        
+        let sbClient = null;
+        let chartInstance = null;
+
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clockTime').textContent = now.toLocaleTimeString('en-US', { hour12: false });
+            document.getElementById('clockDate').textContent = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric' }).toUpperCase();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        function addLog(msg, type = 'SYS') {
+            const log = document.getElementById('logContent');
+            const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+            const line = document.createElement('div');
+            line.className = 'log-line';
+            line.innerHTML = `<span>[${time}] [${type}]</span> ${msg}`;
+            log.prepend(line);
+            if (log.children.length > 50) log.lastChild.remove();
+        }
+
+        async function init() {
+            try {
+                sbClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                addLog('Supabase interface operational.', 'NET');
+                fetchData();
+                setupRealtime();
+                setInterval(fetchData, 45000);
+            } catch (e) {
+                addLog('Initialization failed: ' + e.message, 'ERR');
+            }
+        }
+
+        async function fetchData() {
+            try {
+                const { data, error } = await sbClient
+                    .from('reportes_hq')
+                    .select('*')
+                    .order('hora_reporte', { ascending: false })
+                    .limit(200);
+
+                if (error) throw error;
+                updateUI(data);
+                addLog('Satellite data packet received.', 'DB');
+                document.getElementById('lastUpdate').textContent = 'LAST SIGNAL: ' + new Date().toLocaleTimeString();
+            } catch (err) {
+                addLog('Data link dropped: ' + err.message, 'ERR');
+            }
+        }
+
+        function getProjectionBadge(projected) {
+            if (projected >= 20) return { label: 'OPTIMAL', class: 'badge-optimal' };
+            if (projected >= 10) return { label: 'WARNING', class: 'badge-warning' };
+            return { label: 'CRITICAL', class: 'badge-critical' };
+        }
+
+        function updateUI(data) {
+            if (!data || data.length === 0) return;
+            
+            const latest = {};
+            data.forEach(row => { if (!latest[row.location]) latest[row.location] = row; });
+            const rows = Object.values(latest).sort((a,b) => a.brand_id - b.brand_id);
+
+            const container = document.getElementById('locationsContainer');
+            container.innerHTML = '';
+            
+            rows.forEach(loc => {
+                const totalFleet = (loc.on_rent||0) + (loc.vehicles_available||0);
+                const util = totalFleet > 0 ? Math.round((loc.on_rent / totalFleet) * 100) : 0;
+                const totalRes = (loc.on_rent||0) + (loc.open||0) + (loc.no_show||0) + (loc.unqualified||0) + (loc.cancellations||0) + (loc.turo||0);
+                const projected = (loc.vehicles_available||0) + (loc.return_next_day||0) - (loc.reservas_next_day||0);
+                const proj = getProjectionBadge(projected);
+                const revenue = (loc.total_rental_days||0) * (loc.avg_rate_day||0);
+
+                const group = document.createElement('div');
+                group.className = 'loc-group';
+                group.innerHTML = `
+                    <div class="loc-header-main">
+                        <div class="loc-title-group">
+                            <h3>${loc.location}</h3>
+                            <p>Command ID: ${loc.brand_id} | Protocol: ACTIVE-SYNC | Node: ${new Date(loc.hora_reporte).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.2rem;">Utilization</div>
+                            <div style="font-family: var(--font-mono); font-size: 1.8rem; font-weight: 900; color: var(--neon-primary);">${util}%</div>
+                        </div>
+                    </div>
+
+                    <div class="loc-modules-grid">
+                        <!-- Module 1: Reservations -->
+                        <div class="module-card">
+                            <div class="module-title"><span>📋</span> RESERVATIONS</div>
+                            <div class="module-data">
+                                <div class="data-row highlight"><span class="label">Total</span> <span class="val">${totalRes}</span></div>
+                                <div class="data-row"><span class="label">On Rent</span> <span class="val">${loc.on_rent}</span></div>
+                                <div class="data-row"><span class="label">Open</span> <span class="val">${loc.open}</span></div>
+                            </div>
+                            <div class="module-footer">Current Load</div>
+                        </div>
+
+                        <!-- Module 2: Logistics -->
+                        <div class="module-card">
+                            <div class="module-title"><span>🔄</span> LOGISTICS</div>
+                            <div class="module-data">
+                                <div class="data-row"><span class="label">Returns</span> <span class="val">${loc.return_completed||0}/${loc.returns||0}</span></div>
+                                <div class="data-row"><span class="label">No Show</span> <span class="val">${loc.no_show||0}</span></div>
+                                <div class="data-row"><span class="label">Cancel</span> <span class="val">${loc.cancellations||0}</span></div>
+                            </div>
+                            <div class="module-footer">Field Operations</div>
+                        </div>
+
+                        <!-- Module 3: Forecasting -->
+                        <div class="module-card">
+                            <div class="module-title"><span>🔮</span> FORECASTING</div>
+                            <div class="module-data">
+                                <div class="data-row"><span class="label">Res. Tomorrow</span> <span class="val">${loc.reservas_next_day||0}</span></div>
+                                <div class="data-row"><span class="label">Ret. Tomorrow</span> <span class="val">${loc.return_next_day||0}</span></div>
+                                <div class="data-row highlight"><span class="label">Projected</span> <span class="val">${projected}</span></div>
+                            </div>
+                            <div class="projection-badge ${proj.class}" style="text-align:center;">${proj.label}</div>
+                        </div>
+
+                        <!-- Module 4: Financials -->
+                        <div class="module-card">
+                            <div class="module-title"><span>💰</span> FINANCIALS</div>
+                            <div class="module-data">
+                                <div class="data-row"><span class="label">Avg Rate</span> <span class="val">$${(loc.avg_rate_day||0).toFixed(2)}</span></div>
+                                <div class="data-row"><span class="label">Rental Days</span> <span class="val">${loc.total_rental_days||0}</span></div>
+                                <div class="data-row highlight"><span class="label">Est Rev</span> <span class="val">$${Math.round(revenue).toLocaleString()}</span></div>
+                            </div>
+                            <div class="module-footer">Revenue Dynamics</div>
+                        </div>
+
+                        <!-- Module 5: Analytics -->
+                        <div class="module-card">
+                            <div class="module-title"><span>📊</span> ANALYTICS</div>
+                            <div class="module-data">
+                                <div class="data-row"><span class="label">Turo Flow</span> <span class="val">${loc.turo||0}</span></div>
+                                <div class="data-row"><span class="label">Unqualified</span> <span class="val">${loc.unqualified||0}</span></div>
+                                <div class="data-row"><span class="label">Issues</span> <span class="val" style="color:var(--neon-danger)">${(loc.no_show||0)+(loc.cancellations||0)}</span></div>
+                            </div>
+                            <div class="module-footer">Exceptions & Turo</div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(group);
+            });
+
+            // Global KPIs
+            const totalOnRent = rows.reduce((s, r) => s + (r.on_rent||0), 0);
+            const totalAvail  = rows.reduce((s, r) => s + (r.vehicles_available||0), 0);
+            const totalResGlobal = rows.reduce((s, r) => s + (r.total_reservations||0), 0);
+            const totalIssuesGlobal = rows.reduce((s, r) => s + (r.no_show||0) + (r.cancellations||0), 0);
+            
+            document.getElementById('kpiOnRent').textContent = totalOnRent;
+            document.getElementById('kpiAvailable').textContent = totalAvail;
+            document.getElementById('kpiTotalRes').textContent = totalResGlobal;
+            document.getElementById('kpiIssues').textContent = totalIssuesGlobal;
+            
+            const totalDaysGlobal = rows.reduce((s, r) => s + (r.total_rental_days||0), 0);
+            const totalPaidGlobal = rows.reduce((s, r) => s + (r.total_rental_days||0) * (r.avg_rate_day||0), 0);
+            const avgRateGlobal   = totalDaysGlobal > 0 ? totalPaidGlobal / totalDaysGlobal : 0;
+            document.getElementById('kpiAvgRate').textContent = '$' + Math.round(avgRateGlobal);
+
+            renderChart(data);
+        }
+
+        function renderChart(data) {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+            const hourly = {};
+            data.slice(0, 100).forEach(r => {
+                const h = new Date(r.hora_reporte).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+                if (!hourly[h]) hourly[h] = { on: 0, av: 0 };
+                hourly[h].on += (r.on_rent||0);
+                hourly[h].av += (r.vehicles_available||0);
+            });
+            
+            const labels = Object.keys(hourly).reverse();
+            const onRent = labels.map(l => hourly[l].on);
+            const avail  = labels.map(l => hourly[l].av);
+
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: 'ON RENT', data: onRent, borderColor: '#00f3ff', backgroundColor: 'rgba(0, 243, 255, 0.1)', fill: true, tension: 0.4, pointRadius: 0 },
+                        { label: 'AVAILABLE', data: avail, borderColor: '#7000ff', backgroundColor: 'transparent', fill: false, tension: 0.4, pointRadius: 0 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { display: false },
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#475569', font: { family: 'Share Tech Mono' } } }
+                    }
+                }
+            });
+        }
+
+        async function forceSync() {
+            try {
+                addLog('Issuing global synchronization command...', 'CMD');
+                const btn = document.getElementById('forceSyncBtn');
+                btn.disabled = true;
+                btn.innerHTML = '<span>⏳</span> SYNCING...';
+                await sbClient.from('comandos_bot').insert([{ comando: 'sync_now', status: 'pending' }]);
+                
+                const bar = document.getElementById('syncStatusBar');
+                const fill = document.getElementById('syncProgressBar');
+                bar.style.display = 'block';
+                fill.style.width = '30%';
+                setTimeout(() => { fill.style.width = '60%'; }, 2000);
+                setTimeout(() => { fill.style.width = '90%'; }, 5000);
+            } catch (err) {
+                addLog('Command error: ' + err.message, 'ERR');
+            }
+        }
+
+        function setupRealtime() {
+            sbClient.channel('commands-channel')
+                .on('postgres_changes', { event: 'UPDATE', table: 'comandos_bot', schema: 'public' }, payload => {
+                    if (payload.new.status === 'completed') {
+                        addLog('Remote synchronization successful.', 'OK');
+                        const bar = document.getElementById('syncStatusBar');
+                        const fill = document.getElementById('syncProgressBar');
+                        fill.style.width = '100%';
+                        setTimeout(() => {
+                            bar.style.display = 'none';
+                            fill.style.width = '0%';
+                            const btn = document.getElementById('forceSyncBtn');
+                            btn.disabled = false;
+                            btn.innerHTML = '<span>🔄</span> INITIATE GLOBAL SYNC';
+                            fetchData();
+                        }, 1000);
+                    }
+                }).subscribe();
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

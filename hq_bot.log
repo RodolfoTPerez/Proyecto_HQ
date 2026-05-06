@@ -1586,3 +1586,25 @@ task: <Task pending name='Task-17' coro=<AsyncRealtimeClient._listen() running a
 2026-05-03 15:06:02,138 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 19:06:26 UTC)" was missed by 0:00:05.472155
 2026-05-03 15:17:38,742 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 19:17:56 UTC)" was missed by 0:00:12.076170
 2026-05-03 15:17:38,788 [ERROR] realtime._async.client — WebSocket connection closed with code: 1006, reason: 
+2026-05-03 15:47:33,725 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 19:48:00 UTC)" was missed by 0:00:02.756187
+2026-05-03 16:39:21,219 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 20:39:30 UTC)" was missed by 0:00:20.250468
+2026-05-03 16:39:21,407 [ERROR] realtime._async.client — WebSocket connection closed with code: 1006, reason: 
+2026-05-03 16:40:15,291 [ERROR] __main__ — Error procesando comando realtime: Timed out
+2026-05-03 16:41:34,735 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 20:42:00 UTC)" was missed by 0:00:03.765796
+2026-05-03 16:42:09,489 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 20:42:30 UTC)" was missed by 0:00:08.520273
+2026-05-03 16:42:36,910 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 20:43:00 UTC)" was missed by 0:00:05.941678
+2026-05-03 16:47:09,843 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 20:47:30 UTC)" was missed by 0:00:08.874763
+2026-05-03 16:54:07,047 [ERROR] __main__ — Error en check_pending_commands_job: HTTPSConnectionPool(host='xtvopaehirznzeyuanwc.supabase.co', port=443): Read timed out. (read timeout=5)
+2026-05-03 17:16:02,153 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-03 21:16:30 UTC)" was missed by 0:00:01.184776
+2026-05-04 08:14:36,941 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-04 12:15:05 UTC)" was missed by 0:00:01.663914
+2026-05-04 08:17:30,623 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-04 12:17:35 UTC)" was missed by 0:00:25.345182
+2026-05-04 08:17:30,656 [ERROR] realtime._async.client — WebSocket connection closed with code: 1006, reason: 
+2026-05-04 08:17:30,684 [ERROR] realtime._async.client — Connection attempt failed: [Errno 11001] getaddrinfo failed
+2026-05-04 08:17:31,710 [ERROR] realtime._async.client — Connection attempt failed: [Errno 11001] getaddrinfo failed
+2026-05-04 09:38:53,433 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-04 13:39:05 UTC)" was missed by 0:00:18.155927
+2026-05-04 09:38:53,505 [WARNING] apscheduler.executors.default — Run time of job "auto_report (trigger: interval[1:00:00], next run at: 2026-05-04 14:13:10 UTC)" was missed by 0:25:43.253221
+2026-05-04 09:38:53,604 [ERROR] realtime._async.client — Connection attempt failed: [Errno 11001] getaddrinfo failed
+2026-05-04 09:53:58,199 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-04 13:54:05 UTC)" was missed by 0:00:22.922147
+2026-05-04 09:53:58,346 [ERROR] realtime._async.client — WebSocket connection closed with code: 1006, reason: 
+2026-05-04 10:13:39,755 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-04 14:14:05 UTC)" was missed by 0:00:04.478009
+2026-05-06 16:07:00,794 [WARNING] apscheduler.executors.default — Run time of job "pending_commands_fallback (trigger: interval[0:00:30], next run at: 2026-05-06 20:07:28 UTC)" was missed by 0:00:02.676960
