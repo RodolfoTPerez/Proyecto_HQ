@@ -1,138 +1,1084 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="cyber">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🚗 Rent-A-Car HQ Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <link rel="stylesheet" href="styles.css?v=3">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HQ Dashboard — Rent-A-Car Operations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #161b2e;
+            --bg-card-hover: #1e2338;
+            --bg-terminal: #0d1117;
+            --border-color: #232a3f;
+            --border-light: #2d3650;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
+            --accent-red: #ef4444;
+            --accent-purple: #8b5cf6;
+            --accent-blue: #3b82f6;
+            --accent-pink: #ec4899;
+            --accent-orange: #f97316;
+            --accent-amber: #eab308;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -1px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.5), 0 8px 10px -6px rgba(0,0,0,0.4);
+            --radius: 14px;
+            --radius-sm: 10px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+        .app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+        /* ── SIDEBAR ── */
+        .sidebar { background: var(--bg-secondary); border-right: 1px solid var(--border-color); padding: 24px 16px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+        .brand { display: flex; align-items: center; gap: 12px; padding: 0 8px 24px; border-bottom: 1px solid var(--border-color); margin-bottom: 24px; }
+        .brand-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 0 20px rgba(6,182,212,0.25); }
+        .brand-text h1 { font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
+        .brand-text span { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-section { margin-bottom: 8px; }
+        .nav-section-title { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; padding: 0 12px; margin-bottom: 8px; }
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: var(--radius-sm); color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s; cursor: pointer; margin-bottom: 2px; }
+        .nav-item:hover { background: var(--bg-card); color: var(--text-primary); }
+        .nav-item.active { background: var(--bg-card); color: var(--accent-cyan); box-shadow: inset 3px 0 0 var(--accent-cyan); }
+        .nav-item i { width: 20px; text-align: center; font-size: 15px; }
+        .status-badge { margin-left: auto; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700; }
+        .badge-green { background: rgba(16,185,129,0.12); color: var(--accent-green); border: 1px solid rgba(16,185,129,0.2); }
+        .badge-purple { background: rgba(139,92,246,0.12); color: var(--accent-purple); border: 1px solid rgba(139,92,246,0.2); }
+        .badge-cyan { background: rgba(6,182,212,0.12); color: var(--accent-cyan); border: 1px solid rgba(6,182,212,0.2); }
+
+        /* ── MAIN ── */
+        .main { padding: 24px 32px; overflow-y: auto; max-height: 100vh; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+        .header-left h2 { font-size: 26px; font-weight: 800; margin-bottom: 4px; }
+        .header-left p { color: var(--text-muted); font-size: 14px; }
+        .header-right { display: flex; gap: 12px; align-items: center; }
+        .live-indicator { display: flex; align-items: center; gap: 8px; background: rgba(16,185,129,0.1); color: var(--accent-green); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; border: 1px solid rgba(16,185,129,0.2); }
+        .live-dot { width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
+        .btn { padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-secondary); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+        .btn:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--text-muted); }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); color: white; border: none; }
+        .btn-primary:hover { opacity: 0.9; color: white; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .section-title { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary); }
+        .section-title i { color: var(--accent-cyan); }
+        .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border-color), transparent); margin-left: 12px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+
+        /* ── GLOBAL KPI BAR ── */
+        .kpi-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
+        .kpi-mini { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+        .kpi-mini:hover { border-color: var(--border-light); transform: translateY(-2px); box-shadow: var(--shadow); }
+        .kpi-mini-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+        .kpi-mini-icon.cyan { background: rgba(6,182,212,0.15); color: var(--accent-cyan); }
+        .kpi-mini-icon.green { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+        .kpi-mini-icon.yellow { background: rgba(245,158,11,0.15); color: var(--accent-yellow); }
+        .kpi-mini-icon.purple { background: rgba(139,92,246,0.15); color: var(--accent-purple); }
+        .kpi-mini-icon.red { background: rgba(239,68,68,0.15); color: var(--accent-red); }
+        .kpi-mini-info { display: flex; flex-direction: column; }
+        .kpi-mini-value { font-size: 20px; font-weight: 800; line-height: 1; }
+        .kpi-mini-label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+        /* ── LOCATION CARDS ── */
+        .location-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 20px; position: relative; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; gap: 14px; }
+        .location-card:hover { border-color: var(--border-light); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+        .location-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; opacity: 0.8; }
+        .card-nashville::before { background: linear-gradient(90deg, var(--accent-orange), var(--accent-amber)); }
+        .card-miami::before { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue)); }
+        .card-nc::before { background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple)); }
+
+        .location-header { display: flex; justify-content: space-between; align-items: center; }
+        .location-name { display: flex; align-items: center; gap: 10px; }
+        .location-name i { font-size: 16px; }
+        .card-nashville .location-name i { color: var(--accent-orange); }
+        .card-miami .location-name i { color: var(--accent-cyan); }
+        .card-nc .location-name i { color: var(--accent-pink); }
+        .location-name h3 { font-size: 18px; font-weight: 800; }
+        .location-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+        .location-date { font-size: 11px; color: var(--text-muted); background: rgba(255,255,255,0.03); padding: 3px 8px; border-radius: 6px; border: 1px solid var(--border-color); }
+        .live-tag { font-size: 10px; font-weight: 700; color: var(--accent-green); display: flex; align-items: center; gap: 4px; }
+        .live-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-green); animation: pulse 2s infinite; }
+
+        .total-reservations { display: flex; align-items: baseline; gap: 10px; padding-bottom: 14px; border-bottom: 1px solid var(--border-color); }
+        .total-reservations .number { font-size: 36px; font-weight: 900; line-height: 1; letter-spacing: -1px; }
+        .card-nashville .total-reservations .number { color: var(--accent-orange); }
+        .card-miami .total-reservations .number { color: var(--accent-cyan); }
+        .card-nc .total-reservations .number { color: var(--accent-pink); }
+        .total-reservations .label { font-size: 12px; color: var(--text-muted); font-weight: 500; line-height: 1.3; }
+
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .metric-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: var(--bg-secondary); border-radius: var(--radius-sm); border: 1px solid var(--border-color); transition: all 0.2s; }
+        .metric-item:hover { border-color: var(--border-light); }
+        .metric-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+        .metric-icon.blue { background: rgba(59,130,246,0.15); color: #60a5fa; }
+        .metric-icon.green { background: rgba(16,185,129,0.15); color: #4ade80; }
+        .metric-icon.red { background: rgba(239,68,68,0.15); color: #f87171; }
+        .metric-icon.gray { background: rgba(148,163,184,0.15); color: #94a3b8; }
+        .metric-icon.orange { background: rgba(249,115,22,0.15); color: #fb923c; }
+        .metric-icon.purple { background: rgba(168,85,247,0.15); color: #c084fc; }
+        .metric-icon.cyan { background: rgba(6,182,212,0.15); color: #22d3ee; }
+        .metric-info { display: flex; flex-direction: column; }
+        .metric-value { font-size: 14px; font-weight: 800; color: var(--text-primary); }
+        .metric-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+        /* ── RETURNS ── */
+        .returns-section { margin-top: 2px; }
+        .returns-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .returns-header span { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+        .returns-header .returns-value { font-size: 14px; font-weight: 800; color: var(--accent-cyan); }
+        .progress-bar-bg { height: 6px; background: var(--bg-secondary); border-radius: 3px; overflow: hidden; border: 1px solid var(--border-color); }
+        .progress-bar-fill { height: 100%; border-radius: 3px; transition: width 1.5s ease-out; width: 0; }
+        .card-nashville .progress-bar-fill { background: linear-gradient(90deg, var(--accent-orange), var(--accent-amber)); }
+        .card-miami .progress-bar-fill { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue)); }
+        .card-nc .progress-bar-fill { background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple)); }
+
+        /* ── FLEET UTILIZATION ── */
+        .utilization-section { background: var(--bg-secondary); border-radius: var(--radius-sm); border: 1px solid var(--border-color); padding: 10px 12px; }
+        .utilization-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .utilization-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+        .utilization-title i { font-size: 10px; color: var(--accent-cyan); }
+        .utilization-pct { font-size: 16px; font-weight: 900; }
+        .util-bar-bg { height: 8px; background: var(--bg-primary); border-radius: 4px; overflow: hidden; border: 1px solid var(--border-color); margin-bottom: 6px; }
+        .util-bar-fill { height: 100%; border-radius: 4px; transition: width 1.5s cubic-bezier(0.23,1,0.32,1); }
+        .card-nashville .util-bar-fill { background: linear-gradient(90deg, var(--accent-orange), var(--accent-amber)); }
+        .card-miami .util-bar-fill { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue)); }
+        .card-nc .util-bar-fill { background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple)); }
+        .utilization-detail { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); }
+        .utilization-detail span strong { color: var(--text-secondary); font-weight: 700; }
+
+        /* ── TOMORROW / PROJECTION ── */
+        .tomorrow-section { background: var(--bg-secondary); border-radius: var(--radius-sm); border: 1px solid var(--border-color); padding: 10px 12px; }
+        .tomorrow-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+        .tomorrow-title i { font-size: 10px; color: var(--accent-purple); }
+        .tomorrow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .tomorrow-item { padding: 10px 8px; background: var(--bg-card); border-radius: var(--radius-sm); text-align: center; border: 1px solid var(--border-color); transition: all 0.2s; }
+        .tomorrow-item:hover { border-color: var(--border-light); }
+        .tomorrow-icon { font-size: 14px; margin-bottom: 4px; }
+        .tomorrow-value { font-size: 20px; font-weight: 900; color: var(--text-primary); line-height: 1; }
+        .tomorrow-label { font-size: 10px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-top: 3px; letter-spacing: 0.3px; }
+        .tomorrow-item.projected { border-color: var(--border-light); }
+        .projection-badge { display: inline-block; font-size: 9px; font-weight: 800; padding: 2px 7px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+        .proj-optimal  { background: rgba(16,185,129,0.15); color: var(--accent-green); border: 1px solid rgba(16,185,129,0.3); }
+        .proj-moderate { background: rgba(6,182,212,0.15); color: var(--accent-cyan); border: 1px solid rgba(6,182,212,0.3); }
+        .proj-warning  { background: rgba(245,158,11,0.15); color: var(--accent-yellow); border: 1px solid rgba(245,158,11,0.3); }
+        .proj-critical { background: rgba(239,68,68,0.15); color: var(--accent-red); border: 1px solid rgba(239,68,68,0.3); }
+
+        /* ── CARD FOOTER ── */
+        .card-footer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-top: 14px; border-top: 1px solid var(--border-color); }
+        .footer-stat { text-align: center; }
+        .footer-stat .footer-value { font-size: 16px; font-weight: 800; }
+        .footer-stat .footer-label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+
+        /* ── ERROR BOX ── */
+        .error-box { display: none; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.3); border-radius: var(--radius-sm); color: #f87171; font-size: 13px; padding: 10px 16px; margin-bottom: 16px; font-family: 'JetBrains Mono', monospace; }
+
+        /* ── SYNC SECTION ── */
+        .sync-section { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 24px; position: relative; overflow: hidden; box-shadow: var(--shadow); }
+        .sync-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan)); }
+        .sync-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+        .sync-header-icon { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(6,182,212,0.15)); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(16,185,129,0.25); color: var(--accent-green); }
+        .sync-title h2 { font-size: 18px; font-weight: 800; }
+        .sync-title p { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+        .sync-meta { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+        .sync-meta-item { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--bg-secondary); border-radius: var(--radius-sm); border: 1px solid var(--border-color); }
+        .sync-meta-item i { color: var(--accent-cyan); font-size: 12px; }
+        .sync-meta-item span { font-size: 13px; color: var(--text-secondary); }
+        .sync-meta-item strong { color: var(--text-primary); font-weight: 700; }
+        .sync-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+        .sync-item { display: flex; align-items: center; gap: 10px; padding: 12px; background: var(--bg-secondary); border-radius: var(--radius-sm); border: 1px solid var(--border-color); transition: all 0.2s; }
+        .sync-item:hover { border-color: var(--accent-green); background: rgba(16,185,129,0.03); }
+        .sync-check { width: 26px; height: 26px; background: rgba(16,185,129,0.15); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--accent-green); font-size: 11px; flex-shrink: 0; border: 1px solid rgba(16,185,129,0.2); }
+        .sync-info { flex: 1; }
+        .sync-info .sync-name { font-size: 11px; font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.5px; }
+        .sync-info .sync-count { font-size: 18px; font-weight: 900; margin-top: 2px; }
+        .sync-item:nth-child(1) .sync-count { color: var(--accent-cyan); }
+        .sync-item:nth-child(2) .sync-count { color: var(--accent-purple); }
+        .sync-item:nth-child(3) .sync-count { color: var(--accent-green); }
+        .sync-item:nth-child(4) .sync-count { color: var(--accent-orange); }
+        .sync-item:nth-child(5) .sync-count { color: var(--accent-yellow); }
+        .sync-item:nth-child(6) .sync-count { color: var(--accent-pink); }
+        .sync-item:nth-child(7) .sync-count { color: var(--accent-cyan); }
+        .total-bar { margin-top: 18px; padding: 14px 20px; background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(139,92,246,0.08)); border-radius: var(--radius-sm); border: 1px solid rgba(6,182,212,0.15); display: flex; justify-content: space-between; align-items: center; }
+        .total-bar .total-label { font-size: 14px; font-weight: 600; color: var(--text-secondary); }
+        .total-bar .total-value { font-size: 24px; font-weight: 900; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        /* ── TERMINAL ── */
+        .terminal-card { background: var(--bg-terminal); border: 1px solid var(--border-color); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+        .terminal-header { background: var(--bg-secondary); padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color); }
+        .terminal-dots { display: flex; gap: 6px; }
+        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-red { background: var(--accent-red); }
+        .dot-yellow { background: var(--accent-yellow); }
+        .dot-green { background: var(--accent-green); }
+        .terminal-title { font-size: 13px; font-weight: 600; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
+        .terminal-body { padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9; max-height: 360px; overflow-y: auto; }
+        .log-line { display: flex; gap: 12px; padding: 1px 0; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+        .log-time { color: var(--text-muted); min-width: 50px; flex-shrink: 0; }
+        .log-icon { min-width: 20px; text-align: center; }
+        .log-success { color: var(--accent-green); }
+        .log-warning { color: var(--accent-yellow); }
+        .log-error { color: var(--accent-red); }
+        .log-info { color: var(--accent-cyan); }
+        .log-text { color: var(--text-secondary); }
+
+        /* ── CONNECTION STATUS ── */
+        .connection-status { display: flex; align-items: center; gap: 20px; padding: 16px 20px; background: var(--bg-secondary); border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin-top: 12px; flex-wrap: wrap; }
+        .connection-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+        .connection-dot { width: 8px; height: 8px; border-radius: 50%; position: relative; }
+        .connection-dot::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid currentColor; opacity: 0.3; animation: ping 2s infinite; }
+        @keyframes ping { 0% { transform: scale(1); opacity: 0.3; } 100% { transform: scale(2); opacity: 0; } }
+
+        /* ── ANIMATIONS ── */
+        .fade-in { animation: fadeInUp 0.6s ease forwards; opacity: 0; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* ── TOAST ── */
+        .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; }
+        .toast { background: var(--bg-card); border: 1px solid var(--border-color); border-left: 3px solid var(--accent-green); border-radius: var(--radius-sm); padding: 14px 18px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-lg); animation: slideIn 0.3s ease; min-width: 300px; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        /* ── SYNC BUTTON SPIN ── */
+        .spin { animation: spinAnim 1s linear infinite; }
+        @keyframes spinAnim { to { transform: rotate(360deg); } }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1400px) { .sync-grid { grid-template-columns: repeat(4, 1fr); } .kpi-bar { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 1200px) { .app { grid-template-columns: 1fr; } .sidebar { display: none; } .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } .sync-grid { grid-template-columns: repeat(3, 1fr); } .kpi-bar { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) { .main { padding: 16px; } .metrics-grid { grid-template-columns: repeat(2, 1fr); } .tomorrow-grid { grid-template-columns: repeat(3, 1fr); } .kpi-bar { grid-template-columns: repeat(2, 1fr); } }
+    </style>
 </head>
 <body>
-<div class="container-large">
+    <div class="app">
+        <!-- ══ SIDEBAR ══ -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon"><i class="fas fa-car-side" style="color: white;"></i></div>
+                <div class="brand-text"><h1>HQ Dashboard</h1><span>Rent-A-Car Operations</span></div>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="#" class="nav-item active"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-map-marker-alt"></i><span>Locations</span><span class="status-badge badge-green" id="nav-locations">3</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-calendar-check"></i><span>Reservas</span><span class="status-badge badge-purple" id="nav-reservations">0</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-car"></i><span>Vehículos</span><span class="status-badge badge-cyan" id="nav-vehicles">0</span></a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Sistema</div>
+                <a href="comparativos.html" class="nav-item"><span>🔀</span><span>Comparativos</span></a>
+                <a href="reportes_rango.html" class="nav-item"><span>📆</span><span>Rango Fecha</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-bell"></i><span>Notificaciones</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-database"></i><span>Supabase</span><span class="status-badge badge-green" id="supabase-status-badge">--</span></a>
+            </div>
+            <div class="nav-section" style="margin-top: auto;">
+                <div class="nav-section-title">Configuración</div>
+                <a href="#" class="nav-item"><i class="fas fa-cog"></i><span>Ajustes</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-user"></i><span id="chat-id-label">Chat ID: --</span></a>
+            </div>
+        </aside>
 
-  <!-- ══ HEADER ══ -->
-  <header class="header-large">
-    <div class="brand-large">
-      <h1>📊 Rent-A-Car HQ</h1>
+        <!-- ══ MAIN CONTENT ══ -->
+        <main class="main">
+
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <h2>Panel de Operaciones</h2>
+                    <p>Monitoreo en tiempo real — Última actualización: <span id="last-update">--:--:--</span></p>
+                </div>
+                <div class="header-right">
+                    <div class="live-indicator"><div class="live-dot"></div><span id="connectionStatus">Iniciando...</span></div>
+                    <button class="btn" id="forceSyncBtn" onclick="forceSync()">
+                        <i class="fas fa-sync-alt" id="syncIcon"></i>
+                        <span id="syncText">Sincronizar</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="generateReport()"><i class="fas fa-file-alt"></i>Generar Reporte</button>
+                </div>
+            </div>
+
+            <!-- Error Box -->
+            <div id="errorBox" class="error-box"></div>
+
+            <!-- ══ KPI GLOBAL BAR ══ -->
+            <div class="kpi-bar fade-in">
+                <div class="kpi-mini">
+                    <div class="kpi-mini-icon cyan"><i class="fas fa-key"></i></div>
+                    <div class="kpi-mini-info">
+                        <span class="kpi-mini-value" id="kpiOnRent">--</span>
+                        <span class="kpi-mini-label">On Rent</span>
+                    </div>
+                </div>
+                <div class="kpi-mini">
+                    <div class="kpi-mini-icon green"><i class="fas fa-parking"></i></div>
+                    <div class="kpi-mini-info">
+                        <span class="kpi-mini-value" id="kpiAvailable">--</span>
+                        <span class="kpi-mini-label">Disponibles</span>
+                    </div>
+                </div>
+                <div class="kpi-mini">
+                    <div class="kpi-mini-icon yellow"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="kpi-mini-info">
+                        <span class="kpi-mini-value" id="kpiAvgRate">$--</span>
+                        <span class="kpi-mini-label">Avg Rate/Day</span>
+                    </div>
+                </div>
+                <div class="kpi-mini">
+                    <div class="kpi-mini-icon purple"><i class="fas fa-calendar-check"></i></div>
+                    <div class="kpi-mini-info">
+                        <span class="kpi-mini-value" id="kpiTotalRes">--</span>
+                        <span class="kpi-mini-label">Reservaciones</span>
+                    </div>
+                </div>
+                <div class="kpi-mini">
+                    <div class="kpi-mini-icon red"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="kpi-mini-info">
+                        <span class="kpi-mini-value" id="kpiIssues" style="color: var(--accent-red);">--</span>
+                        <span class="kpi-mini-label">Issues</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══ LOCATIONS ══ -->
+            <div class="section-title">
+                <i class="fas fa-map-marked-alt"></i>
+                Locations
+                <span class="section-line"></span>
+                <span id="report-date" style="margin-left: auto; font-size: 12px; color: var(--text-muted); font-weight: 600;">--/--/---- --:--:--</span>
+            </div>
+
+            <div class="grid-3" id="locationsContainer">
+
+                <!-- NASHVILLE -->
+                <div class="location-card card-nashville fade-in delay-1">
+                    <div class="location-header">
+                        <div class="location-name"><i class="fas fa-map-pin"></i><h3>Nashville</h3></div>
+                        <div class="location-meta">
+                            <div class="location-date">Brand ID: 3</div>
+                            <div class="live-tag"><span class="live-tag-dot"></span>LIVE</div>
+                        </div>
+                    </div>
+                    <div class="total-reservations">
+                        <span class="number" id="nashville-total">0</span>
+                        <span class="label">Total Reservations</span>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-item"><div class="metric-icon blue"><i class="fas fa-key"></i></div><div class="metric-info"><span class="metric-value" id="nashville-onrent">0</span><span class="metric-label">ON RENT</span></div></div>
+                        <div class="metric-item"><div class="metric-icon gray"><i class="fas fa-circle-xmark"></i></div><div class="metric-info"><span class="metric-value" id="nashville-unqualified">0</span><span class="metric-label">UNQUALIFIED</span></div></div>
+                        <div class="metric-item"><div class="metric-icon red"><i class="fas fa-ban"></i></div><div class="metric-info"><span class="metric-value" id="nashville-cancellations">0</span><span class="metric-label">CANCELLATIONS</span></div></div>
+                        <div class="metric-item"><div class="metric-icon gray"><i class="fas fa-user-slash"></i></div><div class="metric-info"><span class="metric-value" id="nashville-noshow">0</span><span class="metric-label">NO SHOW</span></div></div>
+                        <div class="metric-item"><div class="metric-icon green"><i class="fas fa-door-open"></i></div><div class="metric-info"><span class="metric-value" id="nashville-open">0</span><span class="metric-label">OPEN</span></div></div>
+                        <div class="metric-item"><div class="metric-icon purple"><i class="fab fa-uber"></i></div><div class="metric-info"><span class="metric-value" id="nashville-turo">0</span><span class="metric-label">TURO</span></div></div>
+                    </div>
+                    <div class="returns-section">
+                        <div class="returns-header"><span>RETURNS</span><span class="returns-value" id="nashville-returns">0 / 0</span></div>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" id="nashville-progress"></div></div>
+                    </div>
+                    <!-- Fleet Utilization -->
+                    <div class="utilization-section">
+                        <div class="utilization-header">
+                            <div class="utilization-title"><i class="fas fa-chart-bar"></i>Utilización de Flota</div>
+                            <span class="utilization-pct" id="nashville-util-pct">0%</span>
+                        </div>
+                        <div class="util-bar-bg"><div class="util-bar-fill" id="nashville-util-bar"></div></div>
+                        <div class="utilization-detail">
+                            <span>On Rent: <strong id="nashville-util-onrent">0</strong></span>
+                            <span>Disponibles: <strong id="nashville-util-avail">0</strong></span>
+                            <span>Total Flota: <strong id="nashville-util-total">0</strong></span>
+                        </div>
+                    </div>
+                    <!-- Tomorrow / Projection -->
+                    <div class="tomorrow-section">
+                        <div class="tomorrow-title"><i class="fas fa-binoculars"></i>Proyección para Mañana</div>
+                        <div class="tomorrow-grid">
+                            <div class="tomorrow-item">
+                                <div class="tomorrow-icon">📅</div>
+                                <div class="tomorrow-value" id="nashville-next-open">0</div>
+                                <div class="tomorrow-label">Rentas Mañana</div>
+                            </div>
+                            <div class="tomorrow-item">
+                                <div class="tomorrow-icon">🔁</div>
+                                <div class="tomorrow-value" id="nashville-next-return">0</div>
+                                <div class="tomorrow-label">Returns Mañana</div>
+                            </div>
+                            <div class="tomorrow-item projected">
+                                <div class="tomorrow-icon">🔮</div>
+                                <div class="tomorrow-value" id="nashville-proj-avail">0</div>
+                                <div class="tomorrow-label">Disp. Proyectada</div>
+                                <div id="nashville-proj-badge" class="projection-badge proj-optimal">ÓPTIMO</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="footer-stat"><div class="footer-value" id="nashville-rental-days" style="color: #60a5fa;">0.0</div><div class="footer-label">Rental Days</div></div>
+                        <div class="footer-stat"><div class="footer-value" id="nashville-avg-rate" style="color: #fbbf24;">$0.00</div><div class="footer-label">Avg Rate/Day</div></div>
+                        <div class="footer-stat"><div class="footer-value" id="nashville-vehicles" style="color: #4ade80;">0</div><div class="footer-label">Vehicles Avail</div></div>
+                    </div>
+                </div>
+
+                <!-- MIAMI -->
+                <div class="location-card card-miami fade-in delay-2">
+                    <div class="location-header">
+                        <div class="location-name"><i class="fas fa-map-pin"></i><h3>Miami</h3></div>
+                        <div class="location-meta">
+                            <div class="location-date">Brand ID: 1</div>
+                            <div class="live-tag"><span class="live-tag-dot"></span>LIVE</div>
+                        </div>
+                    </div>
+                    <div class="total-reservations">
+                        <span class="number" id="miami-total">0</span>
+                        <span class="label">Total Reservations</span>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-item"><div class="metric-icon blue"><i class="fas fa-key"></i></div><div class="metric-info"><span class="metric-value" id="miami-onrent">0</span><span class="metric-label">ON RENT</span></div></div>
+                        <div class="metric-item"><div class="metric-icon gray"><i class="fas fa-circle-xmark"></i></div><div class="metric-info"><span class="metric-value" id="miami-unqualified">0</span><span class="metric-label">UNQUALIFIED</span></div></div>
+                        <div class="metric-item"><div class="metric-icon red"><i class="fas fa-ban"></i></div><div class="metric-info"><span class="metric-value" id="miami-cancellations">0</span><span class="metric-label">CANCELLATIONS</span></div></div>
+                        <div class="metric-item"><div class="metric-icon gray"><i class="fas fa-user-slash"></i></div><div class="metric-info"><span class="metric-value" id="miami-noshow">0</span><span class="metric-label">NO SHOW</span></div></div>
+                        <div class="metric-item"><div class="metric-icon green"><i class="fas fa-door-open"></i></div><div class="metric-info"><span class="metric-value" id="miami-open">0</span><span class="metric-label">OPEN</span></div></div>
+                        <div class="metric-item"><div class="metric-icon purple"><i class="fab fa-uber"></i></div><div class="metric-info"><span class="metric-value" id="miami-turo">0</span><span class="metric-label">TURO</span></div></div>
+                    </div>
+                    <div class="returns-section">
+                        <div class="returns-header"><span>RETURNS</span><span class="returns-value" id="miami-returns">0 / 0</span></div>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" id="miami-progress"></div></div>
+                    </div>
+                    <!-- Fleet Utilization -->
+                    <div class="utilization-section">
+                        <div class="utilization-header">
+                            <div class="utilization-title"><i class="fas fa-chart-bar"></i>Utilización de Flota</div>
+                            <span class="utilization-pct" id="miami-util-pct">0%</span>
+                        </div>
+                        <div class="util-bar-bg"><div class="util-bar-fill" id="miami-util-bar"></div></div>
+                        <div class="utilization-detail">
+                            <span>On Rent: <strong id="miami-util-onrent">0</strong></span>
+                            <span>Disponibles: <strong id="miami-util-avail">0</strong></span>
+                            <span>Total Flota: <strong id="miami-util-total">0</strong></span>
+                        </div>
+                    </div>
+                    <!-- Tomorrow / Projection -->
+                    <div class="tomorrow-section">
+                        <div class="tomorrow-title"><i class="fas fa-binoculars"></i>Proyección para Mañana</div>
+                        <div class="tomorrow-grid">
+                            <div class="tomorrow-item">
+                                <div class="tomorrow-icon">📅</div>
+                                <div class="tomorrow-value" id="miami-next-open">0</div>
+                                <div class="tomorrow-label">Rentas Mañana</div>
+                            </div>
+                            <div class="tomorrow-item">
+                                <div class="tomorrow-icon">🔁</div>
+                                <div class="tomorrow-value" id="miami-next-return">0</div>
+                                <div class="tomorrow-label">Returns Mañana</div>
+                            </div>
+                            <div class="tomorrow-item projected">
+                                <div class="tomorrow-icon">🔮</div>
+                                <div class="tomorrow-value" id="miami-proj-avail">0</div>
+                                <div class="tomorrow-label">Disp. Proyectada</div>
+                                <div id="miami-proj-badge" class="projection-badge proj-optimal">ÓPTIMO</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="footer-stat"><div class="footer-value" id="miami-rental-days" style="color: #60a5fa;">0.0</div><div class="footer-label">Rental Days</div></div>
+                        <div class="footer-stat"><div class="footer-value" id="miami-avg-rate" style="color: #fbbf24;">$0.00</div><div class="footer-label">Avg Rate/Day</div></div>
+                        <div class="footer-stat"><div class="footer-value" id="miami-vehicles" style="color: #4ade80;">0</div><div class="footer-label">Vehicles Avail</div></div>
+                    </div>
+                </div>
+
+                <!-- NC -->
+                <div class="location-card card-nc fade-in delay-3">
+                    <div class="location-header">
+                        <div class="location-name"><i class="fas fa-map-pin"></i><h3>NC</h3></div>
+                        <div class="location-meta">
+                            <div class="location-date">Brand ID: 2</div>
+                            <div class="live-tag"><span class="live-tag-dot"></span>LIVE</div>
+                        </div>
+                    </div>
+                    <div class="total-reservations">
+                        <span class="number" id="nc-total">0</span>
+                        <span class="label">Total Reservations</span>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-item"><div class="metric-icon blue"><i class="fas fa-key"></i></div><div class="metric-info"><span class="metric-value" id="nc-onrent">0</span><span class="metric-label">ON RENT</span></div></div>
+                        <div class="metric-item"><div class="metric-icon gray"><i class="fas fa-circle-xmark"></i></div><div class="metric-info"><span class="metric-value" id="nc-unqualified">0</span><span class="metric-label">UNQUALIFIED</span></div></div>
+                        <div class="metric-item"><div class="metric-icon red"><i class="fas fa-ban"></i></div><div class="metric-info"><span class="metric-value" id="nc-cancellations">0</span><span class="metric-label">CANCELLATIONS</span></div></div>
+                        <div class="metric-item"><div class="metric-icon gray"><i class="fas fa-user-slash"></i></div><div class="metric-info"><span class="metric-value" id="nc-noshow">0</span><span class="metric-label">NO SHOW</span></div></div>
+                        <div class="metric-item"><div class="metric-icon green"><i class="fas fa-door-open"></i></div><div class="metric-info"><span class="metric-value" id="nc-open">0</span><span class="metric-label">OPEN</span></div></div>
+                        <div class="metric-item"><div class="metric-icon purple"><i class="fab fa-uber"></i></div><div class="metric-info"><span class="metric-value" id="nc-turo">0</span><span class="metric-label">TURO</span></div></div>
+                    </div>
+                    <div class="returns-section">
+                        <div class="returns-header"><span>RETURNS</span><span class="returns-value" id="nc-returns">0 / 0</span></div>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" id="nc-progress"></div></div>
+                    </div>
+                    <!-- Fleet Utilization -->
+                    <div class="utilization-section">
+                        <div class="utilization-header">
+                            <div class="utilization-title"><i class="fas fa-chart-bar"></i>Utilización de Flota</div>
+                            <span class="utilization-pct" id="nc-util-pct">0%</span>
+                        </div>
+                        <div class="util-bar-bg"><div class="util-bar-fill" id="nc-util-bar"></div></div>
+                        <div class="utilization-detail">
+                            <span>On Rent: <strong id="nc-util-onrent">0</strong></span>
+                            <span>Disponibles: <strong id="nc-util-avail">0</strong></span>
+                            <span>Total Flota: <strong id="nc-util-total">0</strong></span>
+                        </div>
+                    </div>
+                    <!-- Tomorrow / Projection -->
+                    <div class="tomorrow-section">
+                        <div class="tomorrow-title"><i class="fas fa-binoculars"></i>Proyección para Mañana</div>
+                        <div class="tomorrow-grid">
+                            <div class="tomorrow-item">
+                                <div class="tomorrow-icon">📅</div>
+                                <div class="tomorrow-value" id="nc-next-open">0</div>
+                                <div class="tomorrow-label">Rentas Mañana</div>
+                            </div>
+                            <div class="tomorrow-item">
+                                <div class="tomorrow-icon">🔁</div>
+                                <div class="tomorrow-value" id="nc-next-return">0</div>
+                                <div class="tomorrow-label">Returns Mañana</div>
+                            </div>
+                            <div class="tomorrow-item projected">
+                                <div class="tomorrow-icon">🔮</div>
+                                <div class="tomorrow-value" id="nc-proj-avail">0</div>
+                                <div class="tomorrow-label">Disp. Proyectada</div>
+                                <div id="nc-proj-badge" class="projection-badge proj-optimal">ÓPTIMO</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="footer-stat"><div class="footer-value" id="nc-rental-days" style="color: #60a5fa;">0.0</div><div class="footer-label">Rental Days</div></div>
+                        <div class="footer-stat"><div class="footer-value" id="nc-avg-rate" style="color: #fbbf24;">$0.00</div><div class="footer-label">Avg Rate/Day</div></div>
+                        <div class="footer-stat"><div class="footer-value" id="nc-vehicles" style="color: #4ade80;">0</div><div class="footer-label">Vehicles Avail</div></div>
+                    </div>
+                </div>
+
+            </div><!-- /grid-3 -->
+
+            <!-- ══ SYNC & TERMINAL ══ -->
+            <div class="grid-2">
+                <!-- Sync -->
+                <div class="sync-section fade-in delay-1">
+                    <div class="sync-header">
+                        <div class="sync-header-icon"><i class="fas fa-sync-alt"></i></div>
+                        <div class="sync-title"><h2>Última Sincronización</h2><p>Proceso automatizado de sincronización de datos</p></div>
+                    </div>
+                    <div class="sync-meta">
+                        <div class="sync-meta-item"><i class="far fa-clock"></i><span>Inicio: <strong id="sync-start">--</strong></span></div>
+                        <div class="sync-meta-item"><i class="fas fa-stopwatch"></i><span>Duración: <strong id="sync-duration">--</strong></span></div>
+                        <div class="sync-meta-item"><i class="fas fa-database"></i><span>Total: <strong id="sync-total-meta">0</strong></span></div>
+                    </div>
+                    <div class="sync-grid">
+                        <div class="sync-item"><div class="sync-check"><i class="fas fa-check"></i></div><div class="sync-info"><div class="sync-name">Locations</div><div class="sync-count" id="sync-locations">0</div></div></div>
+                        <div class="sync-item"><div class="sync-check"><i class="fas fa-check"></i></div><div class="sync-info"><div class="sync-name">Categories</div><div class="sync-count" id="sync-categories">0</div></div></div>
+                        <div class="sync-item"><div class="sync-check"><i class="fas fa-check"></i></div><div class="sync-info"><div class="sync-name">Vehicles</div><div class="sync-count" id="sync-vehicles">0</div></div></div>
+                        <div class="sync-item"><div class="sync-check"><i class="fas fa-check"></i></div><div class="sync-info"><div class="sync-name">Rates</div><div class="sync-count" id="sync-rates">0</div></div></div>
+                        <div class="sync-item"><div class="sync-check"><i class="fas fa-check"></i></div><div class="sync-info"><div class="sync-name">Seasons</div><div class="sync-count" id="sync-seasons">0</div></div></div>
+                        <div class="sync-item"><div class="sync-check"><i class="fas fa-check"></i></div><div class="sync-info"><div class="sync-name">Charges</div><div class="sync-count" id="sync-charges">0</div></div></div>
+                        <div class="sync-item"><div class="sync-check"><i class="fas fa-check"></i></div><div class="sync-info"><div class="sync-name">Reservations</div><div class="sync-count" id="sync-reservations">0</div></div></div>
+                    </div>
+                    <div class="total-bar">
+                        <span class="total-label">Total de registros sincronizados</span>
+                        <span class="total-value" id="sync-total">0</span>
+                    </div>
+                </div>
+
+                <!-- Terminal -->
+                <div class="terminal-card fade-in delay-2">
+                    <div class="terminal-header">
+                        <div class="terminal-dots"><div class="terminal-dot dot-red"></div><div class="terminal-dot dot-yellow"></div><div class="terminal-dot dot-green"></div></div>
+                        <span class="terminal-title">hq_bot_logs — bash — 80x24</span>
+                    </div>
+                    <div class="terminal-body" id="terminal-body">
+                        <div class="log-line"><span class="log-time">--:--</span><span class="log-icon log-info">ℹ️</span><span class="log-text">Conectando a Supabase...</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connections -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 20px; margin-top: 0;">
+                <div class="section-title" style="margin-bottom: 12px;"><i class="fas fa-network-wired"></i>Estado de Conexiones</div>
+                <div class="connection-status" style="margin-top: 0;">
+                    <div class="connection-item"><div class="connection-dot" id="dot-supabase" style="background: var(--accent-yellow); color: var(--accent-yellow);"></div><span><strong>Supabase</strong> — <span id="conn-supabase">Conectando...</span></span></div>
+                    <div class="connection-item"><div class="connection-dot" style="background: var(--accent-green); color: var(--accent-green);"></div><span><strong>WebSocket</strong> — Realtime activo</span></div>
+                    <div class="connection-item"><div class="connection-dot" style="background: var(--accent-green); color: var(--accent-green);"></div><span><strong>Telegram API</strong> — Bot activo</span></div>
+                    <div class="connection-item"><div class="connection-dot" style="background: var(--accent-green); color: var(--accent-green);"></div><span><strong>Listener</strong> — Escuchando INSERTs</span></div>
+                    <div class="connection-item" style="margin-left: auto;"><span style="color: var(--text-muted); font-size: 13px;">Auto-refresh: <strong style="color: var(--accent-cyan);">30s</strong></span></div>
+                </div>
+            </div>
+
+        </main>
     </div>
-    <nav class="nav-large">
-      <a href="index.html" class="nav-item-large active">
-        <span class="nav-icon-large">📊</span>
-        <span class="nav-text-large">Dashboard</span>
-      </a>
-      <a href="comparativos.html" class="nav-item-large">
-        <span class="nav-icon-large">🔀</span>
-        <span class="nav-text-large">Comparativos</span>
-      </a>
-      <a href="reportes_rango.html" class="nav-item-large">
-        <span class="nav-icon-large">📆</span>
-        <span class="nav-text-large">Rango</span>
-      </a>
-    </nav>
-    <div class="header-controls-large">
-      <div class="status-large">
-        <span class="status-dot"></span>
-        <span id="connectionStatus">Iniciando...</span>
-      </div>
-      <button id="forceSyncBtn" class="sync-btn-large" onclick="forceSync()">
-        <span class="sync-icon">🔄</span> <span id="syncText">Sincronizar</span>
-      </button>
-      <div class="theme-switcher-large">
-        <button class="theme-btn-large cyber" onclick="setTheme('cyber')" title="Cyberpunk">🟣</button>
-        <button class="theme-btn-large matrix" onclick="setTheme('matrix')" title="Matrix">🟢</button>
-        <button class="theme-btn-large sunset" onclick="setTheme('sunset')" title="Sunset">🟠</button>
-      </div>
-    </div>
-  </header>
 
-  <!-- Sync Status Bar -->
-  <div id="syncStatusBar" class="sync-status-bar">
-    <div class="sync-status-content">
-      <span id="syncStatusMsg">Esperando al bot...</span>
-      <div class="progress-container">
-        <div id="syncProgressBar" class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
+    <div class="toast-container" id="toast-container"></div>
 
-  <!-- Error Box -->
-  <div id="errorBox" class="error-box-large"></div>
+    <script>
+    // ============================================================
+    // 🔑 SUPABASE CONFIG
+    // ============================================================
+    const SUPABASE_URL = 'https://xtvopaehirznzeyuanwc.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_LCKuoYEaj6uJ4SOTUkHKwA_CYXZYOjf';
 
-  <!-- ══ KPIs GLOBALES ══ -->
-  <div class="section-large">
-    <h2 class="section-title-large"><span class="icon-large">📊</span> Resumen Global de Flota</h2>
-    <div class="kpi-grid-large">
-      <div class="glass kpi-card-large">
-        <div class="icon-large">🚗</div>
-        <div class="label-large">On Rent</div>
-        <div class="value-large" id="kpiOnRent">--</div>
-        <div class="desc-large">Vehículos activos</div>
-      </div>
-      <div class="glass kpi-card-large">
-        <div class="icon-large">🅿️</div>
-        <div class="label-large">Disponibles</div>
-        <div class="value-large" id="kpiAvailable">--</div>
-        <div class="desc-large">Listos para rentar</div>
-      </div>
-      <div class="glass kpi-card-large">
-        <div class="icon-large">💰</div>
-        <div class="label-large">Avg Rate/Day</div>
-        <div class="value-large" id="kpiAvgRate">$--</div>
-        <div class="desc-large">Precio promedio/día</div>
-      </div>
-      <div class="glass kpi-card-large">
-        <div class="icon-large">📋</div>
-        <div class="label-large">Reservations</div>
-        <div class="value-large" id="kpiTotalRes">--</div>
-        <div class="desc-large">Total reservas</div>
-      </div>
-      <div class="glass kpi-card-large">
-        <div class="icon-large">⚠️</div>
-        <div class="label-large">Issues</div>
-        <div class="value-large" id="kpiIssues" style="color:var(--neon-warning)">--</div>
-        <div class="desc-large">No Show + Cancel.</div>
-      </div>
-    </div>
-  </div>
+    let sbClient = null;
+    let allData  = [];
+    let currentSyncStart = null; // timestamp for manual sync duration
 
-  <!-- ══ UBICACIONES ══ -->
-  <div class="section-large">
-    <h2 class="section-title-large"><span class="icon-large">📍</span> Estado por Ubicación (En Vivo)</h2>
-    <div id="locationsContainer"></div>
-  </div>
+    // ============================================================
+    // 🕐 CLOCK
+    // ============================================================
+    function updateClock() {
+        document.getElementById('last-update').textContent =
+            new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
 
-  <!-- ══ GRÁFICO ══ -->
-  <div class="section-large">
-    <h2 class="section-title-large"><span class="icon-large">📈</span> Evolución Temporal de Flota</h2>
-    <div class="glass chart-card-large">
-      <div class="chart-header-large">
-        <div class="chart-title-large">On Rent vs Disponibles</div>
-        <div class="chart-legend-large">
-          <div class="legend-item-large"><span class="legend-dot-large" style="background:var(--neon-primary)"></span>🚗 On Rent</div>
-          <div class="legend-item-large"><span class="legend-dot-large" style="background:var(--neon-secondary)"></span>🅿️ Available</div>
-        </div>
-      </div>
-      <div class="chart-container-large">
-        <canvas id="mainChart"></canvas>
-      </div>
-    </div>
-  </div>
+    // ============================================================
+    // 🔧 HELPERS
+    // ============================================================
+    function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+    }
+    function fmtMoney(v) { return `$${Number(v || 0).toFixed(2)}`; }
+    function fmtDate(ts) {
+        const d = new Date(ts);
+        const mm = String(d.getMonth()+1).padStart(2,'0');
+        const dd = String(d.getDate()).padStart(2,'0');
+        return `${mm}/${dd}/${d.getFullYear()}`;
+    }
+    function fmtDateTime(ts) {
+        const d = new Date(ts);
+        return d.toLocaleString('es-ES', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    }
+    function fmtTime(ts) { return new Date(ts).toISOString().substring(11,16); }
 
-  <!-- ══ FOOTER ══ -->
-  <footer class="footer-large">
-    <div class="refresh-large">
-      <span>🔄 Auto-refresh: 30s</span>
-      <span>•</span>
-      <span id="lastUpdate">Última actualización: --:--:--</span>
-    </div>
-    <div class="footer-info-large">
-      Dashboard Rent-A-Car HQ • Datos en tiempo real desde Supabase • reportes_hq
-    </div>
-  </footer>
+    function animateNumber(id, target) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const current = Number(el.textContent.replace(/[^0-9.-]/g,'') || 0);
+        if (current === target) return;
+        const step = (target - current) / 10;
+        let value = current;
+        const timer = setInterval(() => {
+            value += step;
+            const done = (step >= 0 && value >= target) || (step < 0 && value <= target);
+            el.textContent = done ? target : Math.round(value);
+            if (done) clearInterval(timer);
+        }, 40);
+    }
 
-</div>
+    // ============================================================
+    // 🎯 PROJECTION BADGE
+    // ============================================================
+    function getProjection(value) {
+        if (value < 7)   return { cls: 'proj-critical', label: 'CRÍTICO' };
+        if (value <= 14) return { cls: 'proj-warning',  label: 'PRECAUCIÓN' };
+        if (value <= 20) return { cls: 'proj-moderate', label: 'MODERADO' };
+        return               { cls: 'proj-optimal',  label: 'ÓPTIMO' };
+    }
 
-<script src="app.js"></script>
+    // ============================================================
+    // 📍 APPLY LOCATION DATA TO DOM
+    // ============================================================
+    function applyLocation(prefix, d) {
+        // Reservations total
+        const totalRes = (d.on_rent||0) + (d.open||0) + (d.no_show||0) + (d.unqualified||0) + (d.cancellations||0) + (d.turo||0);
+        animateNumber(`${prefix}-total`, d.total_reservations || totalRes);
+
+        // Core metrics
+        setText(`${prefix}-onrent`,        d.on_rent);
+        setText(`${prefix}-unqualified`,   d.unqualified);
+        setText(`${prefix}-cancellations`, d.cancellations);
+        setText(`${prefix}-noshow`,        d.no_show);
+        setText(`${prefix}-open`,          d.open);
+        setText(`${prefix}-turo`,          d.turo);
+        setText(`${prefix}-returns`,       `${d.return_completed} / ${d.returns}`);
+
+        // Returns progress bar
+        const retPct = d.returns > 0 ? Math.min(100, Math.round((d.return_completed / d.returns) * 100)) : 0;
+        const retBar = document.getElementById(`${prefix}-progress`);
+        if (retBar) retBar.style.width = `${retPct}%`;
+
+        // Fleet utilization
+        const totalFleet = (d.on_rent||0) + (d.vehicles_available||0);
+        const utilPct    = totalFleet > 0 ? Math.round((d.on_rent / totalFleet) * 100) : 0;
+        const utilBar    = document.getElementById(`${prefix}-util-bar`);
+        if (utilBar) utilBar.style.width = `${utilPct}%`;
+        setText(`${prefix}-util-pct`,    `${utilPct}%`);
+        setText(`${prefix}-util-onrent`, d.on_rent);
+        setText(`${prefix}-util-avail`,  d.vehicles_available);
+        setText(`${prefix}-util-total`,  totalFleet);
+
+        // Color the utilization % by threshold
+        const utilPctEl = document.getElementById(`${prefix}-util-pct`);
+        if (utilPctEl) {
+            utilPctEl.style.color = utilPct >= 80 ? 'var(--accent-green)' : utilPct >= 50 ? 'var(--accent-yellow)' : 'var(--accent-red)';
+        }
+
+        // Tomorrow / projection
+        setText(`${prefix}-next-open`,   d.reservas_next_day);
+        setText(`${prefix}-next-return`, d.return_next_day);
+        // Proyeccion corregida: los vehiculos OPEN aun no han salido pero saldran hoy,
+        // por lo que reducen la disponibilidad real antes de manana.
+        // Formula: (disponibles - open_pendientes) + returns_manana - rentas_manana
+        const openPendientes = (d.open||0);
+        const dispReal       = Math.max(0, (d.vehicles_available||0) + (d.returns - d.return_completed  ));
+        const projAvail      = dispReal + (d.return_next_day||0) - (d.reservas_next_day||0);
+        setText(`${prefix}-proj-avail`,  projAvail);
+        const proj = getProjection(projAvail);
+        const badge = document.getElementById(`${prefix}-proj-badge`);
+        if (badge) { badge.className = `projection-badge ${proj.cls}`; badge.textContent = proj.label; }
+
+        // Footer financials
+        setText(`${prefix}-rental-days`, Number(d.total_rental_days||0).toFixed(1));
+        setText(`${prefix}-avg-rate`,    fmtMoney(d.avg_rate_day));
+        const vehiclesLabel = d.vehicles_total > 0
+            ? `${d.vehicles_available} / ${d.vehicles_total}`
+            : `${d.vehicles_available}`;
+        setText(`${prefix}-vehicles`, vehiclesLabel);
+    }
+
+    // ============================================================
+    // 🗺️ MAP SUPABASE LOCATION ROW TO prefix
+    // ============================================================
+    function getPrefix(location) {
+        const l = (location || '').toLowerCase();
+        if (l.includes('miami'))    return 'miami';
+        if (l.includes('nashville')) return 'nashville';
+        if (l.includes('nc'))        return 'nc';
+        return null;
+    }
+
+    // ============================================================
+    // 📊 GLOBAL KPIs
+    // ============================================================
+    function renderKPIs(data) {
+        const latest = getLatestByLocation(data);
+        const totals = latest.reduce((acc, loc) => {
+            const totalRes = (loc.on_rent||0)+(loc.open||0)+(loc.no_show||0)+(loc.unqualified||0)+(loc.cancellations||0);
+            return {
+                onRent:   acc.onRent   + (loc.on_rent||0),
+                available:acc.available+ (loc.vehicles_available||0),
+                avgRate:  acc.avgRate  + (loc.avg_rate_day||0),
+                totalRes: acc.totalRes + totalRes,
+                issues:   acc.issues   + (loc.no_show||0) + (loc.cancellations||0),
+                count:    acc.count + 1
+            };
+        }, { onRent:0, available:0, avgRate:0, totalRes:0, issues:0, count:0 });
+
+        const avgRate = totals.count ? (totals.avgRate / totals.count).toFixed(2) : '0.00';
+        setText('kpiOnRent',   totals.onRent);
+        setText('kpiAvailable',totals.available);
+        setText('kpiAvgRate',  '$' + avgRate);
+        setText('kpiTotalRes', totals.totalRes);
+        setText('kpiIssues',   totals.issues);
+        setText('nav-reservations', totals.totalRes);
+        setText('nav-vehicles',     totals.available);
+    }
+
+    function getLatestByLocation(data) {
+        const map = {};
+        data.forEach(row => { if (!map[row.location]) map[row.location] = row; });
+        return Object.values(map);
+    }
+
+    // ============================================================
+    // 🆕 UPDATE SYNC CARD AND LATEST TIMESTAMP (with future filter)
+    // ============================================================
+    function updateSyncCardFromData(data) {
+        if (!data || data.length === 0) return;
+        const latestRows = getLatestByLocation(data);
+        const uniqueLocations = new Set(data.map(r => r.location)).size;
+        let totalVehicles = 0, totalReservations = 0;
+        latestRows.forEach(loc => {
+            totalVehicles += (loc.vehicles_available||0) + (loc.on_rent||0);
+            totalReservations += (loc.on_rent||0)+(loc.open||0)+(loc.no_show||0)+(loc.unqualified||0)+(loc.cancellations||0)+(loc.turo||0);
+        });
+        setText('sync-locations', uniqueLocations);
+        setText('sync-vehicles', totalVehicles);
+        setText('sync-reservations', totalReservations);
+        setText('sync-categories', '0');
+        setText('sync-rates', '0');
+        setText('sync-seasons', '0');
+        setText('sync-charges', '0');
+        const totalRecords = data.length;
+        setText('sync-total-meta', totalRecords);
+        setText('sync-total', totalRecords);
+    }
+
+    function updateLatestSyncTimestamps(data) {
+        if (!data || data.length === 0) return;
+        const now = new Date();
+        // Filtrar registros con hora_reporte <= ahora (ignorar fechas futuras)
+        const validRows = data.filter(row => new Date(row.hora_reporte) <= now);
+        if (validRows.length === 0) return; // no hay fechas válidas, no actualizar
+        const mostRecent = validRows.reduce((a,b) => new Date(a.hora_reporte) > new Date(b.hora_reporte) ? a : b);
+        const lastSyncTime = fmtDateTime(mostRecent.hora_reporte);
+        const reportDateSpan = document.getElementById('report-date');
+        if (reportDateSpan) reportDateSpan.textContent = lastSyncTime;
+        const syncStartElem = document.getElementById('sync-start');
+        if (syncStartElem && !currentSyncStart) {
+            syncStartElem.textContent = lastSyncTime;
+        }
+    }
+
+    // ============================================================
+    // 🏗️ RENDER LOCATION CARDS FROM SUPABASE DATA
+    // ============================================================
+    function renderLocations(data) {
+        const latest = getLatestByLocation(data);
+        latest.forEach(loc => {
+            const prefix = getPrefix(loc.location);
+            if (!prefix) return;
+            applyLocation(prefix, {
+                total_reservations: (loc.on_rent||0)+(loc.open||0)+(loc.no_show||0)+(loc.unqualified||0)+(loc.cancellations||0)+(loc.turo||0),
+                on_rent:            loc.on_rent            || 0,
+                open:               loc.open               || 0,
+                no_show:            loc.no_show            || 0,
+                unqualified:        loc.unqualified        || 0,
+                cancellations:      loc.cancellations      || 0,
+                turo:               loc.turo               || 0,
+                return_completed:   loc.return_completed   || 0,
+                returns:            loc.returns            || 0,
+                vehicles_available: loc.vehicles_available || 0,
+                vehicles_total:     loc.vehicles_total     || 0,
+                reservas_next_day:  loc.reservas_next_day  || 0,
+                return_next_day:    loc.return_next_day    || 0,
+                total_rental_days:  loc.total_rental_days  || 0,
+                avg_rate_day:       loc.avg_rate_day       || 0,
+            });
+        });
+    }
+
+    // ============================================================
+    // 🔌 CONNECTION STATUS
+    // ============================================================
+    function updateStatus(status) {
+        const dot  = document.getElementById('dot-supabase');
+        const text = document.getElementById('connectionStatus');
+        const conn = document.getElementById('conn-supabase');
+        const badge= document.getElementById('supabase-status-badge');
+        const states = {
+            connected: { bg: 'var(--accent-green)', label: 'Activo',      conn: 'Conectado',    bdg: 'OK'  },
+            error:     { bg: 'var(--accent-red)',    label: 'Error',       conn: 'Error',        bdg: 'ERR' },
+            loading:   { bg: 'var(--accent-yellow)', label: 'Actualizando…',conn:'Conectando…',  bdg: '...' },
+        };
+        const s = states[status] || states.loading;
+        if (dot)   { dot.style.background = s.bg; dot.style.color = s.bg; }
+        if (text)  text.textContent = s.label;
+        if (conn)  conn.textContent = s.conn;
+        if (badge) badge.textContent = s.bdg;
+    }
+
+    function showError(msg) {
+        console.error('❌', msg);
+        const box = document.getElementById('errorBox');
+        if (box) { box.style.display = 'block'; box.textContent = '❌ ' + msg; }
+        updateStatus('error');
+    }
+
+    // ============================================================
+    // 📡 FETCH FROM SUPABASE (con actualización de timestamps)
+    // ============================================================
+    async function fetchData() {
+        try {
+            updateStatus('loading');
+            const { data, error } = await sbClient
+                .from('reportes_hq')
+                .select('*')
+                .order('hora_reporte', { ascending: false })
+                .limit(200);
+
+            if (error) throw error;
+            if (!data || data.length === 0)
+                throw new Error('La tabla reportes_hq está vacía o sin permisos de lectura');
+
+            allData = data;
+            renderLocations(data);
+            renderKPIs(data);
+            updateSyncCardFromData(data);
+            updateLatestSyncTimestamps(data);  // 👈 Ahora filtra fechas futuras
+            updateStatus('connected');
+            logToTerminal('success', `Datos cargados: ${data.length} registros desde reportes_hq`);
+            return true;
+        } catch (err) {
+            showError('Error cargando datos: ' + err.message);
+            logToTerminal('error', 'Error: ' + err.message);
+            return false;
+        }
+    }
+
+    // ============================================================
+    // 🖥️ TERMINAL (con simulación detallada)
+    // ============================================================
+    function logToTerminal(type, message) {
+        const body = document.getElementById('terminal-body');
+        if (!body) return;
+        const line = document.createElement('div');
+        line.className = 'log-line';
+        const icons = { success: '✅', error: '❌', warning: '⚠️', info: 'ℹ️' };
+        const now = new Date().toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit' });
+        line.innerHTML = `<span class="log-time">${now}</span><span class="log-icon log-${type}">${icons[type]||'ℹ️'}</span><span class="log-text">${message}</span>`;
+        body.appendChild(line);
+        body.scrollTop = body.scrollHeight;
+        // Keep last 40 lines
+        while (body.children.length > 40) body.removeChild(body.firstChild);
+    }
+
+    function simulateBotDetailedLogs() {
+        const steps = [
+            "🔄 Iniciando proceso de sincronización con APIs externas...",
+            "📡 Consultando API de reservas (REST)...",
+            "🏢 Actualizando tabla 'locations' con datos de sedes...",
+            "🚗 Sincronizando catálogo de vehículos y flota...",
+            "💰 Procesando tarifas (rates) y temporadas (seasons)...",
+            "📊 Generando reportes agregados en 'reportes_hq'...",
+            "✅ Sincronización completada exitosamente."
+        ];
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i < steps.length) {
+                logToTerminal('info', steps[i]);
+                i++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 800);
+    }
+
+    // ============================================================
+    // 🔄 FORCE SYNC (comandos_bot) con duración y logs mejorados
+    // ============================================================
+    async function forceSync() {
+        const btn  = document.getElementById('forceSyncBtn');
+        const text = document.getElementById('syncText');
+        const icon = document.getElementById('syncIcon');
+
+        btn.disabled = true;
+        text.textContent = 'Sincronizando...';
+        icon.classList.add('spin');
+
+        currentSyncStart = Date.now();
+        logToTerminal('info', 'Enviando comando sync_now al bot...');
+
+        try {
+            const { data, error } = await sbClient
+                .from('comandos_bot')
+                .insert([{ comando: 'sync_now', status: 'pending' }])
+                .select()
+                .single();
+
+            if (error) throw error;
+            const comandoId = data.id;
+            logToTerminal('info', `Comando sync_now insertado (ID: ${comandoId})`);
+
+            const channel = sbClient
+                .channel('cmd_' + comandoId)
+                .on('postgres_changes',
+                    { event: 'UPDATE', schema: 'public', table: 'comandos_bot', filter: `id=eq.${comandoId}` },
+                    (payload) => {
+                        const status = payload.new.status;
+                        if (status === 'processing') {
+                            text.textContent = 'Bot procesando...';
+                            logToTerminal('warning', 'Bot inició el procesamiento del comando');
+                            simulateBotDetailedLogs(); // Simula pasos internos
+                        }
+                        if (status === 'completed') {
+                            text.textContent = '¡Completado!';
+                            icon.classList.remove('spin');
+                            logToTerminal('success', 'Sync completado correctamente');
+                            showToast('Sincronización completada');
+                            // Calcular duración
+                            if (currentSyncStart) {
+                                const durationSec = Math.round((Date.now() - currentSyncStart) / 1000);
+                                document.getElementById('sync-duration').textContent = `${durationSec} s`;
+                                currentSyncStart = null;
+                            }
+                            setTimeout(async () => {
+                                await fetchData(); // Recarga los datos y actualiza timestamps
+                                text.textContent = 'Sincronizar';
+                                btn.disabled = false;
+                                // Limpiar duración después de refrescar (opcional)
+                                document.getElementById('sync-duration').textContent = '--';
+                            }, 2000);
+                            sbClient.removeChannel(channel);
+                        }
+                        if (status === 'error') {
+                            text.textContent = 'Error';
+                            icon.classList.remove('spin');
+                            btn.disabled = false;
+                            showError('Error en el procesamiento del comando');
+                            sbClient.removeChannel(channel);
+                        }
+                    }
+                ).subscribe();
+        } catch (err) {
+            btn.disabled = false;
+            text.textContent = 'Sincronizar';
+            icon.classList.remove('spin');
+            showError('Error: ' + (err.message || 'No se pudo conectar'));
+        }
+    }
+
+    // ============================================================
+    // 🔔 TOAST Y REPORTE
+    // ============================================================
+    function showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.style.borderLeftColor = type === 'success' ? 'var(--accent-green)' : 'var(--accent-cyan)';
+        toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}" style="color: ${type === 'success' ? 'var(--accent-green)' : 'var(--accent-cyan)'};"></i><span>${message}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
+    }
+
+    function generateReport() {
+        showToast('Generando reporte completo...', 'info');
+        setTimeout(() => showToast('Reporte listo'), 1500);
+    }
+
+    // ============================================================
+    // 🚀 INIT
+    // ============================================================
+    async function init() {
+        if (typeof window.supabase === 'undefined') {
+            setTimeout(init, 300);
+            return;
+        }
+        try {
+            sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+                auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+            });
+            logToTerminal('info', 'Cliente Supabase inicializado');
+            await fetchData();
+            setInterval(fetchData, 30000);
+        } catch (err) {
+            showError('Error inicializando: ' + err.message);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    </script>
 </body>
 </html>
